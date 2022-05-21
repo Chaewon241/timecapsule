@@ -1,4 +1,4 @@
-package com.timecapsule.timecapsule.controller;
+package com.timecapsule.timecapsule.controller.form;
 
 import lombok.Getter;
 
