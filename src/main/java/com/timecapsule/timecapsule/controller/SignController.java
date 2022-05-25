@@ -38,7 +38,7 @@ public class SignController {
         HttpSession session = request.getSession();
         Long memberId = memberService.signIn(form.getEmail(), form.getPassword());
         Member findMember = memberService.findOne(memberId);
-        session.setAttribute("email", findMember.getEmail());
+        session.setAttribute("memberId", findMember.getId());
         session.setAttribute("SIGNIN", "TRUE");
         return "redirect:/";
     }
@@ -48,7 +48,7 @@ public class SignController {
     @GetMapping("/signOut")
     public String signOut(HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.removeAttribute("email");
+        session.removeAttribute("memberId");
         session.removeAttribute("SIGNIN");
         session.invalidate();
         return "redirect:/";
