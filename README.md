@@ -4,7 +4,7 @@
 
 <클래스 다이어그램>
 
-![ClassDiagram (1)](https://user-images.githubusercontent.com/77910498/170284052-ee967631-a20e-4f3a-abe6-8a858fa683b6.png)
+![ClassDiagram](https://user-images.githubusercontent.com/77910498/170489669-5ebb5ac2-4970-4ddf-bd4a-baf579523959.png)
 
 <통신 다이어그램>
 
