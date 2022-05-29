@@ -2,6 +2,7 @@ package com.timecapsule.timecapsule.service;
 
 import com.timecapsule.timecapsule.domain.Group;
 import com.timecapsule.timecapsule.domain.TimeCapsule;
+import com.timecapsule.timecapsule.repository.GroupRepository;
 import com.timecapsule.timecapsule.repository.TimeCapsuleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

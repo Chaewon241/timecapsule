@@ -2,6 +2,7 @@ package com.timecapsule.timecapsule.controller;
 
 import com.timecapsule.timecapsule.controller.form.TimeCapsuleForm;
 import com.timecapsule.timecapsule.domain.TimeCapsule;
+import com.timecapsule.timecapsule.service.GroupService;
 import com.timecapsule.timecapsule.service.MemberService;
 import com.timecapsule.timecapsule.service.MultimediaService;
 import com.timecapsule.timecapsule.service.TimeCapsuleService;
