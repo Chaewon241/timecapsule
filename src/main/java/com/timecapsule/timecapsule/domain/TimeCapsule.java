@@ -27,7 +27,7 @@ public class TimeCapsule {
 
     private String text;
 
-    @OneToMany(mappedBy = "time_capsule", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "timeCapsule", cascade = CascadeType.ALL)
     private List<Multimedia> files;
 
     private LocalDateTime saveDate;
