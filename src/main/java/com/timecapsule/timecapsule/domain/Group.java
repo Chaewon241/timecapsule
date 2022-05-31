@@ -10,6 +10,7 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
+@Table(name = "groups")
 public class Group {
 
     @Id @GeneratedValue
@@ -23,7 +24,7 @@ public class Group {
     private Boolean isChangedOpenDate = false;
 
     @OneToMany
-    @JoinColumn(name = "groupMember_id")
+    @JoinColumn(name = "group_member_id")
     private List<GroupMember> groupMembers;
 
 //    private List<TimeCapules> timeCapules;
