@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.*;
 public class GroupMember {
 
     @Id @GeneratedValue
-    @Column(name="groupMember_id")
+    @Column(name="group_member_id")
     private Long id;
 
     private Boolean isGroupLeader = false;
