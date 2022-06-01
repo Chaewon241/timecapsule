@@ -70,5 +70,25 @@ public class MailSendService {
 
         return authKey;
     }
+
+    public void sendAlarm(String email){
+        try{
+            MailUtils sendMail = new MailUtils(mailSender);
+            sendMail.setSubject("웹타임캡슐");
+            sendMail.setText(new StringBuffer().append("<h1>웹 타임 캡슐</h1>")
+                    .append("<p>오늘은 웹 타임캡슐을 확인하실 날이에요~!<p>")
+                    .append("<p>아래 링크를 클릭하시면 웹타임캡슐 메인화면으로 이동합니다.<p>")
+                    .append("<a href='http://localhost:8080")
+                    .append("' target='_blank'>TimeCapsule</a>")
+                    .toString());
+            sendMail.setFrom("[인증 메일 전송하는 이메일 주소]", "[관리자, 이메일에 표시되는 이름]");
+            sendMail.setTo(email);
+            sendMail.send();
+        } catch(MessagingException e){
+            e.printStackTrace();
+        } catch(UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+    }
 }
 

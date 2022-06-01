@@ -24,15 +24,31 @@ public class MessageService {
     @Value("${Phone.fromNumber}")
     private String fromNumber;
 
-    public String sendMessage(String toNumber, String randomNumber){
+    Message coolsms = new Message(apiKey, apiSecret);
 
-        Message coolsms = new Message(apiKey, apiSecret);
+    public String sendAuthMessage(String toNumber, String randomNumber){
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", toNumber);
         params.put("from", fromNumber);
         params.put("type", "SMS");
-        params.put("text", "[UsersUsedBookStore]인증번호 " + randomNumber + " 를 입력하세요.");
+        params.put("text", "[웹타임캡슐]인증번호 " + randomNumber + " 를 입력하세요.");
+
+        try{
+            JSONObject obj = (JSONObject) coolsms.send(params);
+            return obj.toString();
+        } catch (CoolsmsException e){
+            throw new IllegalStateException("전송 실패");
+        }
+    }
+
+    public String sendMessage(String toNumber){
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("to", toNumber);
+        params.put("from", fromNumber);
+        params.put("type", "SMS");
+        params.put("text", "[웹타임캡슐] 오늘은 타임 캡슐을 확인할 날이에요");
 
         try{
             JSONObject obj = (JSONObject) coolsms.send(params);
