@@ -56,7 +56,7 @@ public class GroupService {
      */
     public void cancelGroup(Long groupId){
         Group group = groupRepository.findOne(groupId);
-        group.cancel();
+        groupRepository.removeGroup(group);
     }
 
     /**
