@@ -7,28 +7,40 @@
         <title>타임캡슐작성</title>
     </head>
     <body>
-        제목: <input type="text" name = "title"><br><br>
+    <form action="/time_capsule/" method="post">
+    제목: <input type="text" name = "title">
+
+    <br><br>
 
 
-        그룹: <select name = "groupname" multiplesize = "4" >
-            
-        </select><br><br>
+    그룹: <select name = "groupName" multiplesize = "4" >
+        <form action="/group" method="get"></form>
+        </select>
+
+        <br><br>
 
         타입캡슐내용<br>
-        <textarea name = "timecapsuletext" cols ="100" rows = "10"
-        placeholder="타임캡슐에 들어갈 내용을 작성해주세요."></textarea><br><br>
+        <textarea name = "text" cols ="100" rows = "10"
+                  placeholder="타임캡슐에 들어갈 내용을 작성해주세요.">
+
+        </textarea>
+
+        <br><br>
 
         파일추가삽입<br>
-        <form>
 
-        <input typt = "file" name = "timacapsulefile" id = "timecapsulefileinputoutput"><input type "submit" value = "파일저장">
-            <br><br>
-        
-        </form>
+
+        <input typt = "file" name = "multipartFiles" id = "multipartFiles"><input type ="submit" value = "파일저장" name="multipartFiles">
+
+        <br><br>
+
+
 
         타입캡슐개봉날짜<br>
-        <input type = "date" min = "2022-05-30" max = "2025-05-30" name = "timecapsuleopendate" step = "1">
+        <input type = "date" min = "2022-05-30" max = "2030-05-30" name = "saveDate" step = "1">
+
         <br><br>
-        <input type ="submit" value = "저장"/>
+    </form>
+
     </body>
 </html>
