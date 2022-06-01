@@ -19,9 +19,11 @@ public class GroupMember {
     private Boolean isGroupLeader = false;
 
     @ManyToOne(fetch = LAZY)
+    @JoinColumn(name="member_id")
     private Member member;
 
     @ManyToOne(fetch = LAZY)
+    @JoinColumn(name="group_id")
     private Group group;
 
     protected GroupMember(){}
