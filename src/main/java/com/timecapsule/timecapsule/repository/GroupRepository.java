@@ -33,6 +33,14 @@ public class GroupRepository {
     }
 
     /**
+     * 그룹 전부 찾기
+     */
+    public List<Group> findAll(){
+        return em.createQuery("select g from Group g", Group.class)
+                .getResultList();
+    }
+
+    /**
      * 조건으로 검색하기
      */
     public List<Group> findAllByCriteria(GroupSearch groupSearch){
