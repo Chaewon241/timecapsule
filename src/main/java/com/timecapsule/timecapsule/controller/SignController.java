@@ -25,7 +25,7 @@ public class SignController {
     @GetMapping("/signIn")
     public String createForm(Model model){
         model.addAttribute("form", new SignInForm());
-        return "signIn/createSignInForm";
+        return "createSignInForm.html";
     }
 
     //Post 매핑으로 signIn으로 넘어오면 폼의 데이터들로 로그인을 진행합니다.
@@ -33,7 +33,7 @@ public class SignController {
     public String signIn(@Valid SignInForm form, BindingResult result,
                          HttpServletRequest request){
         if(result.hasErrors()){
-            return "signIn/signInForm";
+            return "/signInForm.html";
         }
         HttpSession session = request.getSession();
         Long memberId = memberService.signIn(form.getEmail(), form.getPassword());
