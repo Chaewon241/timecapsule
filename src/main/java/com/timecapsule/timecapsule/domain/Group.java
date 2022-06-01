@@ -23,11 +23,11 @@ public class Group {
 
     private Boolean isChangedOpenDate = false;
 
-    @OneToMany
-    @JoinColumn(name = "group_member_id")
+    @OneToMany(mappedBy = "group")
     private List<GroupMember> groupMembers;
 
-//    private List<TimeCapules> timeCapules;
+    @OneToMany(mappedBy = "group")
+    private List<TimeCapsule> timeCapsules;
 
     protected Group(){}
 
