@@ -43,8 +43,8 @@
     </div>
 
     <div class="input-box">
-        <input id="phone" type="text" name="phone" placeholder="핸드폰번호">
-        <label for="phone">핸드폰번호</label>
+        <input id="phoneNumber" type="text" name="phoneNumber" placeholder="핸드폰번호">
+        <label for="phoneNumber">핸드폰번호</label>
     </div>
 
     <a href="">
@@ -62,7 +62,7 @@
         <label id="msg"></label>
     </div>
 
-    <button type="button" id="join">회원가입</button>
+    <button type="submit" id="join">회원가입</button>
 
 </form>
 </body>
