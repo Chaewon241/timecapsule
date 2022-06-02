@@ -29,7 +29,7 @@ public class TimeCapsuleController {
     @GetMapping("/time_capsule/new")
     public String createForm(Model model) {
         model.addAttribute("timeCapsuleForm", new TimeCapsuleForm());
-        return "time-capsule-form";
+        return "makenewtimecapsule";
     }
 
     @PostMapping("/time_capsule/new")
@@ -40,7 +40,8 @@ public class TimeCapsuleController {
 
         return "redirect:/";
     }
-
+    
+    
     @GetMapping("/time_capsule/{time_capsule_id}")
     public String timeCapsule(@PathVariable("time_capsule_id") Long timeCapsuleId, Model model) {
         TimeCapsule timeCapsule = timeCapsuleService.findOne(timeCapsuleId);
