@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,13 +31,11 @@ public class SignController {
 
     //Post 매핑으로 signIn으로 넘어오면 폼의 데이터들로 로그인을 진행합니다.
     @PostMapping("/signIn")
-    public String signIn(@Valid SignInForm form, BindingResult result,
-                         HttpServletRequest request){
-        if(result.hasErrors()){
-            return "/signInForm.html";
-        }
+    public String signIn(HttpServletRequest request,
+                         @RequestParam("email") String email,
+                         @RequestParam("password") String password){
         HttpSession session = request.getSession();
-        Long memberId = memberService.signIn(form.getEmail(), form.getPassword());
+        Long memberId = memberService.signIn(email, password);
         Member findMember = memberService.findOne(memberId);
         session.setAttribute("memberId", findMember.getId());
         session.setAttribute("SIGNIN", "TRUE");
