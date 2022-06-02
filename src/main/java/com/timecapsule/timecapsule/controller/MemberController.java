@@ -28,7 +28,7 @@ public class MemberController {
     @GetMapping("/member/new")
     public String createForm(Model model){
         model.addAttribute("memberForm", new MemberForm());
-        return "/createMemberForm.html";
+        return "createMemberForm";
     }
 
     
@@ -60,7 +60,7 @@ public class MemberController {
         model.addAttribute("password", findMember.getPassword());
         model.addAttribute("groups", groups);
 
-        return "/info.html";
+        return "info";
     }
 
     //Post 매핑으로 member/{id}/delete로 넘어오면 회원을 탈퇴시킵니다.
@@ -79,7 +79,7 @@ public class MemberController {
         MemberInfoForm infoForm = new MemberInfoForm(member.getEmail(),
                 member.getPassword(), member.getNickname(), member.getPhoneNumber());
         model.addAttribute("form", infoForm);
-        return "/updateMemberForm.html";
+        return "updateMemberForm";
     }
 
     //Post 매핑으로 member/{id}/edit으로 넘어오면 form의 데이터로 업데이트 처리합니다.
