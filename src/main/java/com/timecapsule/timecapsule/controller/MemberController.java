@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -38,14 +35,12 @@ public class MemberController {
     //Post 매핑으로 member/new로 넘어오면 폼의 데이터로 회원가입을 진행함
     //BindingResult에 에러가 있을 시 createMemberForm으로 다시 넘김
     @PostMapping("/member/new")
-    public String create(@Valid MemberForm form, BindingResult result){
-        if(result.hasErrors()){
-            return "/createMemberForm.html";
-        }
+    public String create(@RequestParam("email") String email,
+                         @RequestParam("nickname") String nickname,
+                         @RequestParam("phoneNumber") String phoneNumber,
+                         @RequestParam("password") String password){
 
-        Member member = new Member(form.getEmail(), form.getNickname(),
-                form.getPhoneNumber(), form.getPassword());
-
+        Member member = new Member(email, nickname, phoneNumber, password);
         memberService.join(member);
         return "redirect:/";
     }
@@ -90,9 +85,11 @@ public class MemberController {
     //Post 매핑으로 member/{id}/edit으로 넘어오면 form의 데이터로 업데이트 처리합니다.
     @PostMapping("/member/{id}/edit")
     public String updateMember(@PathVariable("id") Long memberId,
-                               @ModelAttribute("form") MemberInfoForm form){
-        MemberDto memberDto = new MemberDto(form.getEmail(), form.getPassword(),
-                form.getNickname(), form.getPhoneNumber());
+                               @RequestParam("email") String email,
+                               @RequestParam("nickname") String nickname,
+                               @RequestParam("phoneNumber") String phoneNumber,
+                               @RequestParam("password") String password){
+        MemberDto memberDto = new MemberDto(email, nickname, phoneNumber, password);
         memberService.updateMemberInfo(memberId, memberDto);
         return "redirect:/";
     }

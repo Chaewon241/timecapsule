@@ -38,14 +38,12 @@ public class GroupController {
     //BindingResult 에 에러가 있을 시 createMemberForm 으로 다시 넘김
     //session 에 있는 memberId 를 이용해서 현재 로그인하고 있는 회원을 그룹 leader 로 설정함
     @PostMapping("/group/new")
-    public String create(@Valid GroupForm form, BindingResult result,
-                         HttpServletRequest request) {
-        if (result.hasErrors()) {
-            return "/createGroupForm.html";
-        }
+    public String create(HttpServletRequest request,
+                         @RequestParam("groupName") String groupName,
+                         @RequestParam("openDate") LocalDateTime openDate) {
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
-        groupService.createGroup(memberId, form.getGroupName(), form.getOpenDate());
+        groupService.createGroup(memberId, groupName, openDate);
         return "redirect:/";
     }
 
