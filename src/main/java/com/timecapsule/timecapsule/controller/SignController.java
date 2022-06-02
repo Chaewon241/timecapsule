@@ -26,7 +26,7 @@ public class SignController {
     @GetMapping("/signIn")
     public String createForm(Model model){
         model.addAttribute("form", new SignInForm());
-        return "/signInForm.html";
+        return "signInForm";
     }
 
     //Post 매핑으로 signIn으로 넘어오면 폼의 데이터들로 로그인을 진행합니다.
