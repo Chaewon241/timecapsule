@@ -10,34 +10,25 @@
         <header>
             <h2>회원가입</h2>
         </header>
-        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous">
-            $("#join").click(function(){
-                // json 형식으로 데이터 set
-                var params = {
-                    email      : $("#email").val()
-                    , nickname       : $("#nickname").val()
-                    , password       : $("#password").val()
-                    , phoneNumber    : $("#phone").val()
+        <script>
+            <!-- 비밀번호랑 비밀번호 확인 같은지 -->
+            var a = '@{email}';
+            console.log(a);
+            function check_pw(){
+                var p = document.getElementById('password').value;
+                var p_cf = document.getElementById('ckpassword').value;
+
+                if (p!=p_cf) {
+                    document.getElementById('msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
                 }
-
-                // ajax 통신
-                $.ajax({
-                    type : "POST",            // HTTP method type(GET, POST) 형식이다.
-                    url : "/member/new",      // 컨트롤러에서 대기중인 URL 주소이다.
-                    data : params,            // Json 형식의 데이터이다.
-                    success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-                        // 응답코드 > 0000
-                        console.log("ㅁㅇㄻㅇㄹ");
-                        alert(res.code);
-                    },
-                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                        alert("통신 실패.")
-                    }
-                });
-            });
-
+                else {
+                    document.getElementById('msg').innerHTML = "";
+                }
+                if (p_cf=="") {
+                    document.getElementById('msg').innerHTML = "";
+                }
+            }
         </script>
-
         <form action="/member/new" method="post">
             <div class="input-box"> 
                 <input id="email" type="email" name="email" placeholder="이메일"> 
@@ -64,8 +55,9 @@
             </div>
 
             <div class="input-box">
-                <input id="ckpassword" type="password" name="ckpassword" placeholder="비밀번호 확인">
+                <input id="ckpassword" type="password" name="ckpassword" placeholder="비밀번호 확인" onkeyup="check_pw()">
                 <label for="ckpassword">비밀번호 확인</label>
+                <label id="msg"></label>
             </div>
 
             <button type="button" id="join">회원가입</button>
