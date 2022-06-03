@@ -58,12 +58,10 @@ public class MemberService {
     //로그인
     public Long signIn(String email, String password){
         List<Member> findMembers = memberRepository.findByEmail(email);
-        if(!findMembers.isEmpty()){
-            Member targetMember = findMembers.get(0);
-            if (targetMember.getPassword().equals(password)) {
-                //로그인 성공
-                return targetMember.getId();
-            }
+        Member targetMember = findMembers.get(0);
+        if (targetMember.getPassword().equals(password)) {
+            //로그인 성공
+            return targetMember.getId();
         }
         //로그인 실패
         throw new IllegalStateException("로그인 실패");
