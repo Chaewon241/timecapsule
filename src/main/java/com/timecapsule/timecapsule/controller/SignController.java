@@ -33,13 +33,16 @@ public class SignController {
     @PostMapping("/signIn")
     public String signIn(HttpServletRequest request,
                          @RequestParam("email") String email,
-                         @RequestParam("password") String password){
+                         @RequestParam("password") String password,
+                         Model model){
         HttpSession session = request.getSession();
         Long memberId = memberService.signIn(email, password);
         Member findMember = memberService.findOne(memberId);
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("nickname", findMember.getNickname());
         session.setAttribute("memberId", findMember.getId());
         session.setAttribute("SIGNIN", "TRUE");
-        return "redirect:/";
+        return "Main2";
     }
 
     //Get 매핑으로 signOut으로 접근하면 로그아웃을 진행합니다.
