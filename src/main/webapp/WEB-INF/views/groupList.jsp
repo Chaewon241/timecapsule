@@ -15,20 +15,36 @@
                 document.getElementById('selname').innerHTML;
             }
 
-            document.getElementById('search').addEventListener('click', showList);
-
-            function showList(){
+            window.onload = function(){
                 var sec = document.getElementById('sec');
                 var p = document.getElementById('p');
-                p.innerHTML = "그룹명: " + ${groupname} + " , 리더명: " + ${leadername} + "<br>";
+                var jbBtn = document.createElement( 'button' );
+                var jbBtnText = document.createTextNode( '가입' );
+
+                var arr = ${groups};
+                var i;
+
+                for(i = 0; i < arr.length; i++){
+                    p.innerHTML = "그룹명: " + ${groups[i].groupName} + " , 리더명: " + ${groups[i].leaderName} +
+                        ", 열람날짜: " + ${groups[i].openDate} +"<br>";
+                    let f = document.createElement('form');
+                    f.setAttribute('method', 'post');
+                    f.setAttribute('action', '/group');
+                    p.appendChild(jbBtn.appendChild(jbBtnText));
+                    jbBtn[i].addEventListener("click", click);
+                    sec.appendChild(p);
+                }
+            }
+
+            function click(){
+
             }
 
         </script>
         <header>
             <h1>그룹 목록</h1>
-
         </header>
-        <form action="/group" method="get">
+        <form action="/groupList" method="get">
             <select name = "sel"  multiplesize = "2" onchange="showValue(this)">
                 <option value="groupname">그룹명</option>
                 <option value="leadername">리더명</option>
