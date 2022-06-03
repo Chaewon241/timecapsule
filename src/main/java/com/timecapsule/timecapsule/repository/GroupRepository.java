@@ -46,8 +46,8 @@ public class GroupRepository {
     public List<Group> findAllByCriteria(GroupSearch groupSearch){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Group> cg = cb.createQuery(Group.class);
-        Root<Group> o = cg.from(Group.class);
-        Join<Object, Object> m = o.join("GroupMember", JoinType.INNER);
+        Root<Group> g = cg.from(Group.class);
+        Join<Object, Object> m = g.join("groupMembers", JoinType.INNER);
         Join<Object, Object> mm = m.join("member", JoinType.INNER);
 
         List<Predicate> criteria = new ArrayList<>();
