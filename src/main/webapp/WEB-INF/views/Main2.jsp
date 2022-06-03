@@ -28,7 +28,7 @@
         <input type="button" value="내 정보">
     </a>
 
-    <a href="/member/info">
+    <a href="/member/info"> <!-- 그룹조회매핑 다시 확인 -->
         <input type="button" value="내 그룹">
    </a>
 
