@@ -9,15 +9,11 @@
     </head>
 
     <body>
-    <header>
-        <h1>그룹 가입</h1>
-    </header>
-    <form action="/group" method="post">
-
-    </form>
-        <ol>
-            <li>그룹명 :<a href="">${groupName}</a>, 열람날짜 :<a href="">${openDate}</a></li>
-        </ol>
-        <input type="submit" value="가입">
+        <header>
+            <h1>그룹 가입</h1>
+        </header>
+        <form action="/group" method="post"> <!--가입매핑 확인-->
+            <input type="submit" value="가입">
+        </form>
     </body>
 </html>

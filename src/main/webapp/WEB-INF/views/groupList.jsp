@@ -26,16 +26,13 @@
 
                     let f = document.createElement('form');
                     f.setAttribute('method', 'post');
-                    f.setAttribute('action', '/group');
-                    
-                    p.appendChild(jbBtn.appendChild(jbBtnText));
-                    jbBtn[i].addEventListener("click", click);
-                    sec.appendChild(p);
+                    f.setAttribute('action', '/group'); // 여기 그룹 가입하는 부분
+
+                    p2.appendChild(jbBtn.appendChild(jbBtnText));
+                    jbBtn[i].addEventListener("click", f.submit());
+                    sec.appendChild(p1);
+                    sec.appendChild(p2);
                 }
-            }
-
-            function click(){
-
             }
 
         </script>
