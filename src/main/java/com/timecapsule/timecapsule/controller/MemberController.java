@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -47,8 +49,10 @@ public class MemberController {
 
     //Get 매핑으로 member/{id}로 접근하면 회원의 데이터를 model에 담아서 보내줍니다.
     //회원의 정보를 출력하는 info 페이지 필요
-    @GetMapping("/member/{id}")
-    public String memberInfo(@PathVariable("id") Long memberId, Model model){
+    @GetMapping("/member/info")
+    public String memberInfo(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         Member findMember = memberService.findOne(memberId);
         List<Group> groups = null;
         for (GroupMember groupMember : findMember.getGroupMembers()) {
@@ -65,16 +69,20 @@ public class MemberController {
 
     //Post 매핑으로 member/{id}/delete로 넘어오면 회원을 탈퇴시킵니다.
     //회원탈퇴를 진행할 Post 매핑을 해줄 "회원탈퇴" 버튼이 필요함
-    @PostMapping("/member/{id}/delete")
-    public String deleteMember(@PathVariable("id") Long memberId){
+    @PostMapping("/member/delete")
+    public String deleteMember(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         memberService.removeMember(memberId);
         return "redirect:/";
     }
 
     //Get 매핑으로 member/{id}/edit으로 접근하면 회원 정보 수정을 위한 폼을 화면에 출력합니다.
     //수정 전의 정보를 띄울 updateMemberForm 페이지 필요
-    @GetMapping("/member/{id}/edit")
-    public String updateMemberForm(@PathVariable("id") Long memberId, Model model){
+    @GetMapping("/member/edit")
+    public String updateMemberForm(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         Member member = memberService.findOne(memberId);
         MemberInfoForm infoForm = new MemberInfoForm(member.getEmail(),
                 member.getPassword(), member.getNickname(), member.getPhoneNumber());
@@ -83,13 +91,15 @@ public class MemberController {
     }
 
     //Post 매핑으로 member/{id}/edit으로 넘어오면 form의 데이터로 업데이트 처리합니다.
-    @PostMapping("/member/{id}/edit")
-    public String updateMember(@PathVariable("id") Long memberId,
+    @PostMapping("/member/edit")
+    public String updateMember(HttpServletRequest request,
                                @RequestParam("email") String email,
                                @RequestParam("nickname") String nickname,
                                @RequestParam("phoneNumber") String phoneNumber,
                                @RequestParam("password") String password){
-        MemberDto memberDto = new MemberDto(email, nickname, phoneNumber, password);
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
+        MemberDto memberDto = new MemberDto(email, password, phoneNumber, nickname);
         memberService.updateMemberInfo(memberId, memberDto);
         return "redirect:/";
     }

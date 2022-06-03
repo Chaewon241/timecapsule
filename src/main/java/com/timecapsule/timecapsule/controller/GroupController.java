@@ -82,7 +82,15 @@ public class GroupController {
     //groupSearch 로 검색 데이터를 전달받는데, 초기에는 조건이 없기 떄문에 모든 그룹이 다 나옴
     //그룹 리스트를 표시하기 위한 group/groupList 페이지 필요
     @GetMapping("/group")
-    public String groupList(@ModelAttribute("groupSearch") GroupSearch groupSearch, Model model) {
+    public String groupList(@RequestParam("sel") String option,
+                            @RequestParam("searchText") String text,
+                            Model model) {
+        GroupSearch groupSearch = new GroupSearch();
+        if(option.equals("groupname")){
+            groupSearch.setGroupName(text);
+        } else if (option.equals("leadername")) {
+            groupSearch.setLeaderName(text);
+        }
         List<Group> groups = groupService.findGroups(groupSearch);
         model.addAttribute("groups", groups);
 
