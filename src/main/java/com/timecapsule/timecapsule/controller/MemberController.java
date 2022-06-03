@@ -36,11 +36,11 @@ public class MemberController {
     //BindingResult에 에러가 있을 시 createMemberForm으로 다시 넘김
     @PostMapping("/member/new")
     public String create(@RequestParam("email") String email,
-                         @RequestParam("nickname") String nickname,
+                         @RequestParam("password") String password,
                          @RequestParam("phoneNumber") String phoneNumber,
-                         @RequestParam("password") String password){
+                         @RequestParam("nickname") String nickname){
 
-        Member member = new Member(email, nickname, phoneNumber, password);
+        Member member = new Member(email, password, phoneNumber, nickname);
         memberService.join(member);
         return "redirect:/";
     }
