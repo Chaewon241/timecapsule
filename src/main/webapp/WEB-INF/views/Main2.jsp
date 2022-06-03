@@ -14,24 +14,30 @@
 </header>
 
 <form>
+    <label>${nickname}님 어서오세요!</label>
+
     <a href="/group">
         <input type="button" value="그룹 조회">
-    </a>
-
-    <a href="/group/new">
-        <input type="button" value="그룹 가입">
     </a>
 
     <a href="/group/new">
         <input type="button" value="그룹 생성">
     </a>
 
-    <a href="/member/{id}/edit">
-        <input type="button" value="내 정보 수정">
+    <a href="/member/info">
+        <input type="button" value="내 정보">
+    </a>
+
+    <a href="/member/info">
+        <input type="button" value="내 그룹">
+   </a>
+
+    <a href="/signOut">
+        <input type="button" value="로그아웃">
     </a>
 
     <a href="/member/{id}/delete" method="post">
-        <input type="button" value="회원 탈퇴">
+        <input type="button" value="탈퇴">
     </a>
 </form>
 </body>

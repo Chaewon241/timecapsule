@@ -32,7 +32,7 @@
         <h2>정보 수정</h2>
     </header>
 
-    <form action="/member/{id}/edit" method="POST">
+    <form action="/member/edit" method="POST">
         <div class="input-box">
             <input id="email" type="email" name="email" placeholder="${email}">
             <label for="email"> 이메일</label>
