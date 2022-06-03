@@ -28,8 +28,16 @@
         <input type="button" value="내 정보">
     </a>
 
+    <a href="/member/info">
+        <input type="button" value="내 그룹">
+   </a>
+
+    <a href="/signOut">
+        <input type="button" value="로그아웃">
+    </a>
+
     <a href="/member/{id}/delete" method="post">
-        <input type="button" value="회원 탈퇴">
+        <input type="button" value="탈퇴">
     </a>
 </form>
 </body>

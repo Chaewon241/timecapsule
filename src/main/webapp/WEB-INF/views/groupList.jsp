@@ -10,26 +10,24 @@
 
     <body>
         <script>
-            const showValue = (target) => {
-                const text = target.options[target.selectedIndex].text;
-                document.getElementById('selname').innerHTML;
-            }
-
             window.onload = function(){
                 var sec = document.getElementById('sec');
-                var p = document.getElementById('p');
                 var jbBtn = document.createElement( 'button' );
                 var jbBtnText = document.createTextNode( '가입' );
-
                 var arr = ${groups};
-                var i;
 
-                for(i = 0; i < arr.length; i++){
-                    p.innerHTML = "그룹명: " + ${groups[i].groupName} + " , 리더명: " + ${groups[i].leaderName} +
+                for(var i = 0; i < arr.length; i++){
+                    var p1 = document.createElement('p');
+                    var p2 = document.createElement('p');
+
+                    p1.innerHTML = "그룹 아이디: " + ${groups[i].id};
+                    p2.innerHTML = "그룹명: " + ${groups[i].groupName} + " , 리더명: " + ${leaders[i].nickname} +
                         ", 열람날짜: " + ${groups[i].openDate} +"<br>";
+
                     let f = document.createElement('form');
                     f.setAttribute('method', 'post');
                     f.setAttribute('action', '/group');
+                    
                     p.appendChild(jbBtn.appendChild(jbBtnText));
                     jbBtn[i].addEventListener("click", click);
                     sec.appendChild(p);
@@ -49,12 +47,11 @@
                 <option value="groupname">그룹명</option>
                 <option value="leadername">리더명</option>
             </select>
-            <div id="selname"></div>
             <input id="searchText" type="text" name="searchText" placeholder="검색할 값 입력">
             <label for="searchText">검색할 값 입력</label>
             <input type="submit" id="search" value="검색">
             <section id="sec">
-                <p id="p"></p>
+
             </section>
         </form>
     </body>
