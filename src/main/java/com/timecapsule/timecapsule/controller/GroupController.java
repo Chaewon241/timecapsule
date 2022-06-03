@@ -99,8 +99,18 @@ public class GroupController {
     public String groupList(Model model) {
         GroupSearch groupSearch = new GroupSearch();
         List<Group> groups = groupService.findGroups(groupSearch);
-        model.addAttribute("groups", groups);
+        List<Member> leaders = null;
 
+        for (Group group : groups) {
+            List<GroupMember> gms = group.getGroupMembers();
+            for (GroupMember gm : gms) {
+                if (gm.getIsGroupLeader()) {
+                    leaders.add(gm.getMember());
+                }
+            }
+        }
+        model.addAttribute("groups", groups);
+        model.addAttribute("leaders", leaders);
         return "groupList";
     }
 
