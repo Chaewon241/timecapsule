@@ -14,24 +14,24 @@
 </header>
 <script>
     <!-- 비밀번호랑 비밀번호 확인 같은지 -->
-    var a = '@{email}';
-    console.log(a);
     function check_pw(){
         var p = document.getElementById('password').value;
         var p_cf = document.getElementById('ckpassword').value;
 
-        if (p!=p_cf) {
-            document.getElementById('msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
-        }
-        else {
+        if (p != p_cf) {
             document.getElementById('msg').innerHTML = "";
+
+            return false;
+        }
+        else if (p == p_cf){
+            return true;
         }
         if (p_cf=="") {
             document.getElementById('msg').innerHTML = "";
         }
     }
 </script>
-<form action="/member/new" method="post">
+<form action="/member/new" id="create" method="post">
     <div class="input-box">
         <input id="email" type="email" name="email" placeholder="이메일">
         <label for="email"> 이메일</label>
@@ -62,7 +62,7 @@
         <label id="msg"></label>
     </div>
 
-    <button type="submit" id="join">회원가입</button>
+    <button type="submit" onclick="return check_pw()" id="join">회원가입</button>
 
 </form>
 </body>
