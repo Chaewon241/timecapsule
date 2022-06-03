@@ -14,7 +14,7 @@
 </header>
 
 <form>
-    <label>${nickname}님 어서오세요.</label>
+    <label>${nickname}님 어서오세요!</label>
 
     <a href="/group">
         <input type="button" value="그룹 조회">
