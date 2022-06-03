@@ -1,4 +1,4 @@
-<input type="hidden" id="aaa" value="${model.값}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!doctype html>
 <html>
@@ -10,19 +10,24 @@
 
     <body>
         <script>
-            window.onload = function (){
-
-            }
+            <%--const  showValue = (target) => {--%>
+            <%--    const text = target.options[target.selectedIndex].text;--%>
+            <%--    document.querySelector(`div`).innerHTML = `text: ${text} value: ${value}`;--%>
+            <%--    document.getElementById('selname').innerHTML--%>
+            <%--}--%>
         </script>
         <header>
             <h1>그룹 목록</h1>
 
         </header>
-
-        <a href="">${groups}</a>
-
-        <form>
-
+        <form action="/group/{id}" method="get">
+            <select name = "sel"  multiplesize = "2" onchange="showValue(this)">
+                <option value="groupname">그룹명</option>
+                <option value="leadername">리더명</option>
+            </select>
+            <div id="selname"></div>
+            <a href="">${groups}</a>
+            <button type="submit">조회</button>
         </form>
     </body>
 </html>
