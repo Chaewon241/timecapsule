@@ -23,6 +23,8 @@ public class Group {
 
     private Boolean isChangedOpenDate = false;
 
+    private String password;
+
     @OneToMany(mappedBy = "group")
     private List<GroupMember> groupMembers;
 
@@ -31,9 +33,10 @@ public class Group {
 
     protected Group(){}
 
-    public Group(String groupName, LocalDateTime openDate) {
+    public Group(String groupName, LocalDateTime openDate, String password) {
         this.groupName = groupName;
         this.openDate = openDate;
+        this.password = password;
     }
 
     public boolean updateOpenDate(LocalDateTime newOpenDate){
@@ -54,8 +57,8 @@ public class Group {
 
     //===생성 메서드==//
     public static Group createGroup(String groupName, LocalDateTime openDate,
-                                    GroupMember groupMember) {
-        Group group = new Group(groupName, openDate);
+                                    GroupMember groupMember, String password) {
+        Group group = new Group(groupName, openDate, password);
         group.addGroupMember(groupMember);
         groupMember.updateIsGroupLeader();
         return group;
