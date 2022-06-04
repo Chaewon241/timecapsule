@@ -4,9 +4,8 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-
-import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -26,10 +25,10 @@ public class Group {
     private String password;
 
     @OneToMany(mappedBy = "group")
-    private List<GroupMember> groupMembers;
+    private List<GroupMember> groupMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "group")
-    private List<TimeCapsule> timeCapsules;
+    private List<TimeCapsule> timeCapsules = new ArrayList<>();
 
     protected Group(){}
 
