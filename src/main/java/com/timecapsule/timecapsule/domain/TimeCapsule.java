@@ -22,6 +22,9 @@ public class TimeCapsule {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
     private String title;
 
@@ -33,8 +36,8 @@ public class TimeCapsule {
     private LocalDateTime saveDate;
 
     //== 타임캡슐 생성 메서드 ==//
-    public static TimeCapsule createTimeCapsule(Group group, String title, String text) {
-        TimeCapsule timeCapsule = new TimeCapsule(group, title, text);
+    public static TimeCapsule createTimeCapsule(Group group, Member member, String title, String text) {
+        TimeCapsule timeCapsule = new TimeCapsule(group, member, title, text);
         return timeCapsule;
     }
 
@@ -46,8 +49,9 @@ public class TimeCapsule {
 //    }
 
     //== 타입캡슐 생성자 ==//
-    public TimeCapsule(Group group, String title, String text) {
+    public TimeCapsule(Group group, Member member, String title, String text) {
         this.group = group;
+        this.member = member;
         this.title = title;
         this.text = text;
         this.saveDate = LocalDateTime.now();
