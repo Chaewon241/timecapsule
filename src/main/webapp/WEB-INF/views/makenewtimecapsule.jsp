@@ -42,7 +42,9 @@
         <input type = "date" min = "2022-05-30" max = "2030-05-30" name = "saveDate" step = "1">
 
         <br><br>
+        <input 
     </form>
+        <input type="button" name = "savetimecapsule" value  = "저장">
 
     </body>
 </html>
