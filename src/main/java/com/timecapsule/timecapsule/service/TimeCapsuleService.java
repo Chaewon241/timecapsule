@@ -1,8 +1,10 @@
 package com.timecapsule.timecapsule.service;
 
 import com.timecapsule.timecapsule.domain.Group;
+import com.timecapsule.timecapsule.domain.Member;
 import com.timecapsule.timecapsule.domain.TimeCapsule;
 import com.timecapsule.timecapsule.repository.GroupRepository;
+import com.timecapsule.timecapsule.repository.MemberRepository;
 import com.timecapsule.timecapsule.repository.TimeCapsuleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class TimeCapsuleService {
 
     private final TimeCapsuleRepository timeCapsuleRepository;
     private final GroupRepository groupRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 타임캡슐 생성
@@ -26,14 +29,15 @@ public class TimeCapsuleService {
      * @return timeCapsule의 id
      */
     @Transactional
-    public Long createNewTimeCapsule(Long groupId, String title, String text) {
+    public Long createNewTimeCapsule(Long groupId, Long memberId, String title, String text) {
 
         // 타임캡슐 검증
         verifyTimeCapsule(title);
 
         // 타임캡슐 생성
         Group group = groupRepository.findOne(groupId);
-        TimeCapsule timeCapsule = TimeCapsule.createTimeCapsule(group, title, text);
+        Member member = memberRepository.findOne(memberId);
+        TimeCapsule timeCapsule = TimeCapsule.createTimeCapsule(group, member, title, text);
 
         // 타임캡슐 저장
         timeCapsuleRepository.save(timeCapsule);
