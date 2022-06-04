@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -100,7 +101,7 @@ public class GroupController {
     public String groupList(Model model) {
         GroupSearch groupSearch = new GroupSearch();
         List<Group> groups = groupService.findGroups(groupSearch);
-        List<Member> leaders = null;
+        List<Member> leaders = new ArrayList<>();
 
         for (Group group : groups) {
             List<GroupMember> gms = group.getGroupMembers();
