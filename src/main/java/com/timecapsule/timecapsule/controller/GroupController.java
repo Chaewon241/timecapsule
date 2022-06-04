@@ -45,10 +45,11 @@ public class GroupController {
     @PostMapping("/group/new")
     public String create(HttpServletRequest request,
                          @RequestParam("groupName") String groupName,
-                         @RequestParam("openDate") LocalDateTime openDate) {
+                         @RequestParam("openDate") LocalDateTime openDate,
+                         @RequestParam("password") String password) {
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
-        groupService.createGroup(memberId, groupName, openDate);
+        groupService.createGroup(memberId, groupName, openDate, password);
         return "Main2";
     }
 
@@ -147,6 +148,24 @@ public class GroupController {
     @PostMapping("/group/{id}/cancel")
     public String cancelGroup(@PathVariable("id") Long groupId) {
         groupService.cancelGroup(groupId);
+        return "Main2";
+    }
+
+    /**
+     * 그룹에 가입하는 매핑입니다.
+     * 가입하고 싶은 그룹과 비밀번호를 받고, 그룹에 가입을 진행합니다.
+     * 맴버 ID 값은 로그인한 Session 에 있는 memberId 를 가져옵니다.
+     * @param groupId : 그룹의 ID 값(URL 로 넘어옴)
+     * @param password : 가입할 그룹의 비밀번호
+     * @return : 로그인 한 메인페이지로 이동
+     */
+    @PostMapping("/group/{id}/join")
+    public String joinGroup(HttpServletRequest request,
+                            @PathVariable("id") Long groupId,
+                            @RequestParam("password") String password){
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
+        groupService.joinGroup(groupId, memberId, password);
         return "Main2";
     }
 }

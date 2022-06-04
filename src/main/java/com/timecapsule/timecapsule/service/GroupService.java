@@ -31,10 +31,10 @@ public class GroupService {
      * isGroupLeader 속성의 default = false
      */
     @Transactional
-    public void createGroup(Long memberId, String groupName ,LocalDateTime openDate){
+    public void createGroup(Long memberId, String groupName, LocalDateTime openDate, String password) {
         Member leader = memberRepository.findOne(memberId);
         GroupMember groupMember = new GroupMember(leader);
-        Group group = Group.createGroup(groupName, openDate, groupMember);
+        Group group = Group.createGroup(groupName, openDate, groupMember, password);
         groupRepository.save(group);
     }
 
@@ -43,7 +43,7 @@ public class GroupService {
      * GroupSearch 에 검색할 조건과 내용이 들어가게 됨
      * 그룹리더의 이름으로 검색 or 그룹명으로 검색
      */
-    public List<Group> findGroups(GroupSearch groupSearch){
+    public List<Group> findGroups(GroupSearch groupSearch) {
         return groupRepository.findAllByCriteria(groupSearch);
     }
 
@@ -54,7 +54,7 @@ public class GroupService {
      * group.cancel 은 실행되면 해당 그룹안에 있는 GroupMember 개체를 삭제하게 된다.
      * 흐름 : group.cancel -> groupMember.remove
      */
-    public void cancelGroup(Long groupId){
+    public void cancelGroup(Long groupId) {
         Group group = groupRepository.findOne(groupId);
         groupRepository.removeGroup(group);
     }
@@ -67,9 +67,9 @@ public class GroupService {
      * isChangedOpenDate 의 default 값은 false 이고, 한번 수정이 진행되었다면 true 로 설정된다.
      * 만약 true 이면 수정이 불가능하다. (날짜 수정은 한번만 된다는 흐름)
      */
-    public void updateOpenDate(Long groupId, LocalDateTime newOpenDate){
+    public void updateOpenDate(Long groupId, LocalDateTime newOpenDate) {
         Group group = groupRepository.findOne(groupId);
-        if(!group.updateOpenDate(newOpenDate)){
+        if (!group.updateOpenDate(newOpenDate)) {
             throw new IllegalStateException("열람날짜 수정은 한번만 가능합니다.");
         }
     }
@@ -79,8 +79,28 @@ public class GroupService {
      * 그룹을 조회해서 해당 그룹을 누르고 들어갔을 때, 그룹의 정보를 보여주기 위한 기능
      * groupId 를 받아서 해당 ID 로 조회함
      */
-    public Group findOne(Long groupId){
+    public Group findOne(Long groupId) {
         Group group = groupRepository.findOne(groupId);
         return group;
+    }
+
+    /**
+     * 그룹에 가입하기
+     * 그룹 ID 와 멤버 ID 를 가지고 멤버와 그룹을 찾아오고,
+     * 그룹의 패스워드와 입력된 패스워드를 비교해서 가입을 승인하게 됩니다.
+     */
+    public void joinGroup(Long groupId, Long memberId, String password) {
+        Group group = groupRepository.findOne(groupId);
+        Member member = memberRepository.findOne(memberId);
+
+        if (group.getPassword().equals(password)) {
+            //가입 승인
+            GroupMember groupMember = new GroupMember(member);
+            group.addGroupMember(groupMember);
+        } else {
+            //가입 실패
+            throw new IllegalStateException("그룹 가입 실패");
+        }
+
     }
 }
