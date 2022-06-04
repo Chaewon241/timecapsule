@@ -48,6 +48,7 @@ public class TimeCapsuleController {
     public String create(@Valid TimeCapsuleForm form) throws IOException {
         
         Long timeCapsuleId = timeCapsuleService.createNewTimeCapsule(form.getGroupId(),
+                                                                     form.getMemberId(),
                                                                      form.getTitle(),
                                                                      form.getText());
         multimediaService.createNewMultimedias(timeCapsuleId, form.getMultipartFiles());
@@ -89,6 +90,6 @@ public class TimeCapsuleController {
             model.addAttribute("msg", "접근 권한이 없습니다.");
         }
         
-        return "time-capsule-view";
+        return "opentimecapsul";
     }
 }
