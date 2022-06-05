@@ -39,8 +39,9 @@
 
         </tr>
         </tbody>
-    </table></form>
-<button onclick = "location.href = 'makenewtimecapsule.jsp'">타임캡슐새로생성</button>
+    </table></form><br><br>
+<button onclick = "location.href = 'makenewtimecapsule.jsp'" value="타임캡슐생성"></button><br>
+<button onclick = "location.href = 'changeopendatetimecapsule.jsp'" value="타임캡슐개봉일변경"></button>
 
 
 
