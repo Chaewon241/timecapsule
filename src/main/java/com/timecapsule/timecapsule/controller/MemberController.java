@@ -106,9 +106,10 @@ public class MemberController {
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         Member member = memberService.findOne(memberId);
-        MemberInfoForm infoForm = new MemberInfoForm(member.getEmail(),
-                member.getPassword(), member.getNickname(), member.getPhoneNumber());
-        model.addAttribute("info", infoForm);
+        model.addAttribute("email", member.getEmail());
+        model.addAttribute("password", member.getPassword());
+        model.addAttribute("nickname", member.getNickname());
+        model.addAttribute("phoneNumber", member.getPhoneNumber());
         return "updateMemberForm";
     }
 
@@ -127,8 +128,7 @@ public class MemberController {
                                @RequestParam("email") String email,
                                @RequestParam("password") String password,
                                @RequestParam("phoneNumber") String phoneNumber,
-                               @RequestParam("nickname") String nickname
-                               ){
+                               @RequestParam("nickname") String nickname ){
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         MemberDto memberDto = new MemberDto(email, password, phoneNumber, nickname);
