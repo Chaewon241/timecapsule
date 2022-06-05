@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -67,7 +68,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         Member findMember = memberService.findOne(memberId);
-        List<Group> groups = null;
+        List<Group> groups = new ArrayList<>();
         for (GroupMember groupMember : findMember.getGroupMembers()) {
             groups.add(groupMember.getGroup());
         }
