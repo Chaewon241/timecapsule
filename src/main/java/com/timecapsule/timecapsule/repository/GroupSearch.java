@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class GroupSearch {
-    private String LeaderName;
-    private String GroupName;
+    private String leaderName;
+    private String groupName;
+    private String memberName;
 }

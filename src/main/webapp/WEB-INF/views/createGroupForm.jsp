@@ -102,7 +102,6 @@
     </head>
 
     <body>
-
         <header>
             <h2>그룹 생성</h2>
         </header>
@@ -134,7 +133,6 @@
                     location.href = "Main";
                 }
             }
-
         </script>
     </body>
 </html>

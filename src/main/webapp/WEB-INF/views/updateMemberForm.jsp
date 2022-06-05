@@ -79,7 +79,6 @@
             }
             a:link { background-image: linear-gradient(rgba(0, 195, 6, 0.2) 100%, transparent 0); background-position: 0 0.85em; background-repeat: repeat-x; background-size: 1px 0.5em; }
         </style>
-
         <title>정보 수정</title>
     </head>
 

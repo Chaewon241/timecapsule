@@ -77,7 +77,9 @@ public class TimeCapsuleController {
         
         session.removeAttribute("groupId");
         
-        multimediaService.createNewMultimedias(timeCapsuleId, multipartFiles);
+        if (!multipartFiles.get(0).getOriginalFilename().isEmpty()) {
+            multimediaService.createNewMultimedias(timeCapsuleId, multipartFiles);
+        }
         
         return "redirect:/";
     }
