@@ -14,9 +14,10 @@
         제목:${timeCapsule.title}<br>
         그룹명:${timeCapsule.group.groupName}<br>
         그룹리더:${timeCapsule.group.getLeader()}<br>
+        그룸멤버<br>
     <c:forEach items="${timeCapsule.group.groupMember}" var="group">
 
-            <p>그룹멤버:${group.getNickname()}</p>
+            <p>${group.getNickname()</p>
 
         </c:forEach><br><br>
 
