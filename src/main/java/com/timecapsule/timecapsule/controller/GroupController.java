@@ -6,18 +6,14 @@ import com.timecapsule.timecapsule.domain.GroupMember;
 import com.timecapsule.timecapsule.domain.Member;
 import com.timecapsule.timecapsule.repository.GroupSearch;
 import com.timecapsule.timecapsule.service.GroupService;
-import com.timecapsule.timecapsule.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -46,11 +42,13 @@ public class GroupController {
     @PostMapping("/group/new")
     public String create(HttpServletRequest request,
                          @RequestParam("groupName") String groupName,
-                         @RequestParam("openDate") LocalDateTime openDate,
+                         @RequestParam("openDate") String openDate,
                          @RequestParam("password") String password) {
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
-        groupService.createGroup(memberId, groupName, openDate, password);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime temp = LocalDateTime.parse(openDate, formatter);
+        groupService.createGroup(memberId, groupName, temp, password);
         return "Main2";
     }
 
@@ -72,8 +70,9 @@ public class GroupController {
                 leader = gm.getMember();
             }
         }
+        String openDate = group.getOpenDate().toString();
         model.addAttribute("groupname", group.getGroupName());
-        model.addAttribute("opendate",group.getOpenDate());
+        model.addAttribute("opendate", openDate);
         model.addAttribute("leadernickname", leader.getNickname());
         return "groupInfo";
     }
@@ -81,13 +80,15 @@ public class GroupController {
     /**
      * 그룹의 열람날짜를 수정하기 위한 매핑입니다.
      * @param groupId : 그룹의 id 값
-     * @param newOpenDate : 수정할 열람 날짜(새 날짜)
+     * @param openDate : 수정할 열람 날짜(새 날짜)
      * @return : group 페이지로 이동
      */
     @PostMapping("/group/{id}")
     public String updateOpenDate(@PathVariable("id") Long groupId,
-                                 @RequestParam("openDate") LocalDateTime newOpenDate) {
-        groupService.updateOpenDate(groupId, newOpenDate);
+                                 @RequestParam("openDate") String openDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime temp = LocalDateTime.parse(openDate, formatter);
+        groupService.updateOpenDate(groupId, temp);
         return "groupList";
     }
 
@@ -101,18 +102,7 @@ public class GroupController {
     public String groupList(Model model) {
         GroupSearch groupSearch = new GroupSearch();
         List<Group> groups = groupService.findGroups(groupSearch);
-        List<Member> leaders = new ArrayList<>();
-
-        for (Group group : groups) {
-            List<GroupMember> gms = group.getGroupMembers();
-            for (GroupMember gm : gms) {
-                if (gm.getIsGroupLeader()) {
-                    leaders.add(gm.getMember());
-                }
-            }
-        }
         model.addAttribute("groups", groups);
-        model.addAttribute("leaders", leaders);
         return "groupList";
     }
 
