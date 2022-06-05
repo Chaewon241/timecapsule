@@ -20,7 +20,7 @@
         <input type="button" value="그룹 조회">
     </a>
 
-    <a href="/group/new">
+    <a href="/group/new" methods="get">
         <input type="button" value="그룹 생성">
     </a>
 
@@ -28,7 +28,7 @@
         <input type="button" value="내 정보">
     </a>
 
-    <a href="/member/info"> <!-- 그룹조회매핑 다시 확인 -->
+    <a href="/group/${group.id}"> <!-- 그룹조회매핑 다시 확인 -->
         <input type="button" value="내 그룹">
    </a>
 
@@ -37,7 +37,7 @@
     </a>
 
     <a href="/member/{id}/delete" method="post">
-        <input type="button" value="탈퇴">
+        <input type="button" value="회원 탈퇴">
     </a>
 </form>
 </body>
