@@ -18,8 +18,7 @@ public class Member {
     private String nickname;
     private String phoneNumber;
 
-
-    @OneToMany
+    @OneToMany(mappedBy = "member")
     private List<GroupMember> groupMembers;
 
     protected Member(){}
