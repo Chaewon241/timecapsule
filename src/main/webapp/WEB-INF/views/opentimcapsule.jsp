@@ -17,7 +17,7 @@
         그룸멤버<br>
     <c:forEach items="${timeCapsule.group.groupMember}" var="group">
 
-            <p>${group.getNickname()</p>
+            <p>${group.getNickname()}</p>
 
         </c:forEach><br><br>
 
