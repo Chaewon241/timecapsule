@@ -22,21 +22,21 @@
         </c:forEach><br><br>
 
         내용 <br>
-        ${timeCapsule.text}
+        ${text}
 
 
         <br><br>
 
         멀티미디어파일내용<br>
-        ${timeCapsule.multipartFiles}
+        ${multipartFiles}
 
 
         <br><br>
 
 
         타임캡슐 열람날짜:
-        <text>${group.opendate}</text>
-        <br>
+        ${group.opendate}
+        
         <br><br>
     </form>
 </form>
