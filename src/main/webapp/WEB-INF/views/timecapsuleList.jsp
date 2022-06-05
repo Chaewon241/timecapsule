@@ -67,7 +67,7 @@
     </tbody>
 </table>
 <br><br>
-<input type="button" value="새로운 타임캡슐 생성" onclick="location.href='makenewtimecapsule.jsp'"> <br>
+<input type="button" value="새로운 타임캡슐 생성" onclick="location.href=/timeCapsule/new'"> <br>
 </body>
 </html>
 
