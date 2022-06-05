@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html>
@@ -10,28 +11,22 @@
 
     <body>
         <script>
+            var pw = document.getElementById('password');
+            var ckpw = document.getElementById('ckpassword');
+
             window.onload = function(){
-                var sec = document.getElementById('sec');
-                var jbBtn = document.createElement( 'button' );
-                var jbBtnText = document.createTextNode( '가입' );
-                var arr = ${groups};
+                pw.style.display = "none";
+                ckpw.style.display = "none";
+            }
 
-                for(var i = 0; i < arr.length; i++){
-                    var p1 = document.createElement('p');
-                    var p2 = document.createElement('p');
-
-                    p1.innerHTML = "그룹 아이디: " + ${groups[i].id};
-                    p2.innerHTML = "그룹명: " + ${groups[i].groupName} + " , 리더명: " + ${leaders[i].nickname} +
-                        ", 열람날짜: " + ${groups[i].openDate} +"<br>";
-
-                    let f = document.createElement('form');
-                    f.setAttribute('method', 'post');
-                    f.setAttribute('action', '/group'); // 여기 그룹 가입하는 부분
-
-                    p2.appendChild(jbBtn.appendChild(jbBtnText));
-                    jbBtn[i].addEventListener("click", f.submit());
-                    sec.appendChild(p1);
-                    sec.appendChild(p2);
+            function joingroup(){
+                if((pw.style.display = 'none') && (ckpw.style.display = 'none')) {
+                    pw.style.display = "block";
+                    ckpw.style.display = "block";
+                }
+                else{
+                    pw.style.display = "none";
+                    ckpw.style.display = "none";
                 }
             }
 
@@ -39,7 +34,7 @@
         <header>
             <h1>그룹 목록</h1>
         </header>
-        <form action="/groupList" method="get">
+        <form action="/groupList" method="post">
             <select name = "sel"  multiplesize = "2">
                 <option value="groupname">그룹명</option>
                 <option value="leadername">리더명</option>
@@ -47,9 +42,18 @@
             <input id="searchText" type="text" name="searchText" placeholder="검색할 값 입력">
             <label for="searchText">검색할 값 입력</label>
             <input type="submit" id="search" value="검색">
-            <section id="sec">
 
-            </section>
+            <c:forEach items="${groups}" var="group">
+                <form action="/group/${group.id}/join" method="get">
+                    <p>${group.id}</p>
+                    <p>${group.groupName}</p>
+                    <p>${group.openDate}</p>
+                    <input id="password" type="password" name="password" placeholder="비밀번호">
+                    <label for="password">비밀번호</label>
+                    <button type="submit" id="join" onclick="joingroup">가입하기</button>
+                </form>
+            </c:forEach>
         </form>
+
     </body>
 </html>
