@@ -6,13 +6,9 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title> 타임캡슐리스트조회</title>
-
 </head>
 <body>
-<form action="/groupList" method="get">
-    ${groupname}
-</form>
+<h3>타임캡슐 목록</h3>
 <style type="text/css">
     .tg {
         border-collapse: collapse;
@@ -42,48 +38,36 @@
         word-break: normal;
     }
 
-    .tg .tg-x5du {
+    .tg .tg-90vo {
         background-color: #ffce93;
         border-color: #efefef;
-        text-align: left;
+        text-align: center;
         vertical-align: top
     }
 
-    .tg .tg-ly6r {
+    .tg .tg-li6d {
         border-color: #efefef;
-        text-align: left;
+        text-align: center;
         vertical-align: top
     }
 </style>
+
 <table class="tg">
     <thead>
     <tr>
-        <th class="tg-x5du">제목</th>
-        <th class="tg-x5du">타임캡슐개봉예정일</th>
-
+        <th class="tg-x5du">타임캡슐이름</th>
     </tr>
     </thead>
     <tbody>
-
-    <tr>
-        <td class="tg-ly6r"><c:forEach items="${timeCapsules}" var="timeCapsule">
-            <form action="/timeCapsule/${timeCapsule.id}" method="get">
-                <p> 타임캡슐제목: ${timeCapsule.title} </p>
-            </form>
-        </c:forEach></td>
-        <td class="tg-ly6r"><c:forEach items="${groups}" var="group">
-            <form action="/group/${group.id}" method="get">
-                <p> 타임캡슐개봉일: ${group.openDate} </p>
-            </form>
-        </c:forEach></td>
-
-    </tr>
+    <c:forEach items="${timeCapsules}" var="timeCapsule">
+        <tr>
+            <td>${timeCapsule.title}</td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
-</form><br><br>
-<button onclick="location.href = 'makenewtimecapsule.jsp'" value="타임캡슐생성"></button><br>
-<button onclick="location.href = 'changeopendatetimecapsule.jsp'" value="타임캡슐개봉일변경"></button><br>
-
-
+<br><br>
+<input type="button" value="새로운 타임캡슐 생성" onclick="location.href='makenewtimecapsule.jsp'"> <br>
 </body>
 </html>
+
