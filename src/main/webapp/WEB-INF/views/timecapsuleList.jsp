@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,7 @@
     </tbody>
 </table>
 <br><br>
-<input type="button" value="새로운 타임캡슐 생성" onclick="location.href=/timeCapsule/new'"> <br>
+<input type="button" value="새로운 타임캡슐 생성" onclick="location.href='/timeCapsule/new'"> <br>
 </body>
 </html>
 
