@@ -38,10 +38,11 @@
     <section id="sec">
         <h3>그룹 리스트</h3>
         <c:forEach items="${groups}" var="group">
-            <form action="/group/${group.id}" method="get">
+            <form action="/group/${group.id}/join" method="post">
                 <p>그룹ID : ${group.id}, 그룹이름 : ${group.groupName}</p>
                 <p>그룹리더 : ${group.getLeader()}</p>
                 <p>타임캡슐 열람날짜 : ${group.openDate}</p>
+                <input id="password" type="password" name="password" placeholder="비밀번호">
                 <button type="submit">가입하기</button>
             </form>
         </c:forEach>
