@@ -32,19 +32,21 @@
         파일추가삽입<br>
 
 
-        <input typt = "file" name = "multipartFiles" id = "multipartFiles"><input type ="submit" value = "파일저장" name="multipartFiles">
+        <input type = "file" name = "multipartFiles" id = "multipartFiles"><input type ="submit" value = "파일저장" name="multipartFiles">
 
         <br><br>
 
 
 
         타입캡슐개봉날짜<br>
+        <form action ="/timecapsule/new" method = "post">
         <input type = "date" min = "2022-05-30" max = "2030-05-30" name = "saveDate" step = "1">
 
         <br><br>
-        <input 
+    
     </form>
         <input type="button" name = "savetimecapsule" value  = "저장">
+        </form>
 
     </body>
 </html>
