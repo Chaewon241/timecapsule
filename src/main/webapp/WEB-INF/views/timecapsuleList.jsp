@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title> 타임캡슐리스트초회</title>
+    <title> 타임캡슐리스트조회</title>
 
 </head>
 <body>
@@ -68,7 +68,7 @@
     <tr>
         <td class="tg-ly6r"><c:forEach items="${timeCapsules}" var="timeCapsule">
             <form action="/timeCapsule/${timeCapsule.id}" method="get">
-                <p> 타임캡슐 이름: ${timeCapsule.title} </p>
+                <p> 타임캡슐제목: ${timeCapsule.title} </p>
             </form>
         </c:forEach></td>
         <td class="tg-ly6r"><c:forEach items="${groups}" var="group">
