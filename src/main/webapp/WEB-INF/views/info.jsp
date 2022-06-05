@@ -15,6 +15,7 @@
 
         <form>
             <label>${nickname}님의 정보</label>
+
             이메일: ${email}
             닉네임: ${nickname}
             전화번호: ${phoneNumber}
