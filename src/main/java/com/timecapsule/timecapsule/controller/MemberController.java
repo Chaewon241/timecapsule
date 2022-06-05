@@ -135,19 +135,4 @@ public class MemberController {
         memberService.updateMemberInfo(memberId, memberDto);
         return "Main2";
     }
-
-    /**
-     * 휴대폰 인증
-     * 회원가입시에 휴대폰 인증을 수행하는 매핑입니다.
-     * authKey 를 반환하는 매핑으로 비동기방식으로 접근해서 값을 전달받아야 합니다.
-     * @param phoneNumber : 인증을 수행할 휴대폰 번호
-     * @return : authKey(인증키 값을 반환, 이를 이용해서 휴대폰으로 전송된 값과 비교)
-     */
-    @PostMapping("/member/auth")
-    public String phoneAuth(@RequestParam("phoneNumber") String phoneNumber){
-        Random random = new Random();
-        String authKey = String.valueOf(random.nextInt(8888)+1111);
-        messageService.sendAuthMessage(phoneNumber, authKey);
-        return authKey;
-    }
 }
