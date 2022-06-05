@@ -6,7 +6,81 @@
 <head>
     <title>회원가입</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        header{
+            display:flex;
+            justify-content: center;
+        }
+        form{
+            margin-top: 100px;
+            margin-left:300px;
+            margin-right:300px;
+        }
+        .input-box{
+            position:relative;
+            margin:10px 0;
+        }
+        .input-box > input{
+            background:transparent;
+            border:none;
+            border-bottom: solid 1px #ccc;
+            padding:20px 0px 5px 0px;
+            font-size:14pt;
+            width:100%;
+        }
+        input::placeholder{
+            color:transparent;
+        }
+        input:placeholder-shown + label{
+            color:#aaa;
+            font-size:14pt;
+            top:15px;
+
+        }
+        input:focus + label, label{
+            color:#8aa1a1;
+            font-size:10pt;
+            pointer-events: none;
+            position: absolute;
+            left:0px;
+            top:0px;
+            transition: all 0.2s ease ;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            -o-transition: all 0.2s ease;
+        }
+
+        input:focus, input:not(:placeholder-shown){
+            border-bottom: solid 1px #8aa1a1;
+            outline:none;
+        }
+
+        input[type=submit]{
+            background-color: #8aa1a1;
+            border:none;
+            color:white;
+            border-radius: 5px;
+            width:100%;
+            height:35px;
+            font-size: 14pt;
+            margin-top:20px;
+            justify-content: center;
+        }
+
+        button{
+            background-color: #8aa1a1;
+            border:none;
+            color:white;
+            border-radius: 5px;
+            width:100%;
+            height:35px;
+            font-size: 14pt;
+            margin-top:20px;
+            justify-content: center;
+        }
+        a:link { background-image: linear-gradient(rgba(0, 195, 6, 0.2) 100%, transparent 0); background-position: 0 0.85em; background-repeat: repeat-x; background-size: 1px 0.5em; }
+
+    </style>
 </head>
 
 <body>
@@ -72,16 +146,14 @@
         var p = document.getElementById('password').value;
         var p_cf = document.getElementById('ckpassword').value;
 
-        if (p != p_cf) {
-            document.getElementById('msg').innerHTML = "";
-
-            return false;
+        if (p!=p_cf) {
+            document.getElementById('msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
         }
-        else if (p == p_cf){
-            return true;
+        else {
+            document.getElementById('msg').innerHTML = "비밀번호 확인";
         }
         if (p_cf=="") {
-            document.getElementById('msg').innerHTML = "";
+            document.getElementById('msg').innerHTML = "비밀번호 확인";
         }
     }
 
@@ -116,8 +188,7 @@
 
     <div class="input-box">
         <input id="ckpassword" type="password" name="ckpassword" placeholder="비밀번호 확인" onkeyup="check_pw()">
-        <label for="ckpassword">비밀번호 확인</label>
-        <label id="msg"></label>
+        <label for="ckpassword" id="msg">비밀번호 확인</label>
     </div>
 
     <button type="submit" onclick="return check_pw()" id="join">회원가입</button>
