@@ -14,7 +14,6 @@
             <option value="groupname">그룹명</option>
         </select>
     </form>
-
     <form action = "/timeCapSule/group/{group_id}" method = "get">
         <input type ="button" name ="getTimecapsuleList" value = "조회">
         <form action = "/group/{id}" method = "post">

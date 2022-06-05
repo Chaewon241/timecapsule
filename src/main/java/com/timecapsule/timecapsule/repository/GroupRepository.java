@@ -55,17 +55,17 @@ public class GroupRepository {
         //그룹리더 이름으로 검색
         if(StringUtils.hasText(groupSearch.getLeaderName())){
             Predicate leaderName = cb.and(
-                    cb.equal(mm.get("isGroupLeader"), true),
-                    cb.like(mm.get("name"), "%"+groupSearch.getLeaderName()+"%"));
+                    cb.equal(m.get("isGroupLeader"), true),
+                    cb.like(mm.get("nickname"), "%"+groupSearch.getLeaderName()+"%"));
             criteria.add(leaderName);
         }
         //그룹 이름으로 검색
         else if(StringUtils.hasText(groupSearch.getGroupName())){
-            Predicate groupName = cb.like(m.get("name"), "%" + groupSearch.getGroupName()+"%");
+            Predicate groupName = cb.like(g.get("groupName"), "%" + groupSearch.getGroupName()+"%");
             criteria.add(groupName);
         }
 
-        cg.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
+        cg.where(cb.and(criteria.toArray( new Predicate[criteria.size()])));
         TypedQuery<Group> query = em.createQuery(cg).setMaxResults(100);
         return query.getResultList();
     }

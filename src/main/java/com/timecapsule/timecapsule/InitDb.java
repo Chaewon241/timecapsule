@@ -3,6 +3,7 @@ package com.timecapsule.timecapsule;
 import com.timecapsule.timecapsule.domain.Group;
 import com.timecapsule.timecapsule.domain.GroupMember;
 import com.timecapsule.timecapsule.domain.Member;
+import com.timecapsule.timecapsule.domain.TimeCapsule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,16 +30,34 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbInit1(){
-            Member member = new Member("test@test.com", "1234",
-                    "01011112222", "테스트");
-            em.persist(member);
+            Member member1 = new Member("test@test.com", "1234",
+                    "01011112222", "테스트닉네임");
+            em.persist(member1);
 
-            GroupMember groupMember = new GroupMember(member);
-            em.persist(groupMember);
+            Member member2 = new Member("test@gmail.com", "1234",
+                    "01033334444", "테스트닉네임2");
+            em.persist(member2);
 
-            LocalDateTime time = LocalDateTime.now();
-            Group group = Group.createGroup("TestGroup", time, groupMember, "1234");
-            em.persist(group);
+            GroupMember groupMember1 = new GroupMember(member1);
+            em.persist(groupMember1);
+
+            GroupMember groupMember2 = new GroupMember(member2);
+            em.persist(groupMember2);
+
+            LocalDateTime time1 = LocalDateTime.now();
+            Group group1 = Group.createGroup("테스트그룹", time1, groupMember1, "1234");
+            em.persist(group1);
+
+            LocalDateTime time2 = LocalDateTime.now();
+            Group group2 = Group.createGroup("테스트그룹2", time2, groupMember2, "1234");
+            em.persist(group2);
+    
+            TimeCapsule timeCapsule1 = TimeCapsule.createTimeCapsule(group1, member1, "make time Capsule test", "make time Capsule test");
+            em.persist(timeCapsule1);
+    
+            TimeCapsule timeCapsule2 = TimeCapsule.createTimeCapsule(group1, member1, "make time Capsule test 2", "make time Capsule test 2");
+            em.persist(timeCapsule2);
+            
         }
     }
 }
