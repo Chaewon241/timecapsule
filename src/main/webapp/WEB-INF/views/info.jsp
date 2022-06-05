@@ -78,7 +78,7 @@
 
                 if(login_state != '1'){
                     alert("로그인 상태가 아닙니다.");
-                    location.href = "Main.jsp";
+                    location.href = "Main";
                 }
             }
         </script>
