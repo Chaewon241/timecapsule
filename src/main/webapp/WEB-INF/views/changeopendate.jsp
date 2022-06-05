@@ -11,7 +11,7 @@
     <body>
     <form action="/groupList" method ="get">
         <select name = "selgroup" multiple = "2" onchange="showValue(this)">
-            <option value="groupname">그룹명</option>
+            <option value="groupname">${groups}</option>
         </select></form>
     <form action = "/timeCapSule/group/{group_id}" method = "get">
 <input type ="button" name ="getTimecapsuleList" value = "조회">
