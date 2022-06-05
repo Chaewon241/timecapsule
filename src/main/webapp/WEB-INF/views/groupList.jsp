@@ -40,7 +40,7 @@
             <h1>그룹 목록</h1>
         </header>
         <form action="/groupList" method="get">
-            <select name = "sel"  multiplesize = "2" onchange="showValue(this)">
+            <select name = "sel"  multiplesize = "2">
                 <option value="groupname">그룹명</option>
                 <option value="leadername">리더명</option>
             </select>

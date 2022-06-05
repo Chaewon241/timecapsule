@@ -16,7 +16,7 @@
     <form action="/group/new" method="post">
         <input id="groupName" type="text" name="groupName" placeholder="그룹명 입력">
         <label for="groupName">그룹명 입력</label>
-        <input type = "date" min = "2022-05-30" max = "2025-05-30" name = "openDate" step = "1">
+        열람날짜<input type = "date" min = "2022-05-30" max = "2025-05-30" name = "openDate" step = "1">
         <input type="submit" value="그룹생성">
     </form>
     </body>
