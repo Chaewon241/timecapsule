@@ -24,10 +24,10 @@ public class Group {
 
     private String password;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<GroupMember> groupMembers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<TimeCapsule> timeCapsules = new ArrayList<>();
 
     protected Group(){}
