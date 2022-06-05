@@ -36,18 +36,17 @@ public class TimeCapsuleController {
     private final MemberService memberService;
     private final MultimediaService multimediaService;
     
-    /**
+    /**t
      * 타임캡슐 생성 폼을 넘겨주는 컨트롤러
      *
      * @param model
      * @return makenewtimecapsule
      */
     @GetMapping("/timeCapsule/new")
-    public String createForm(HttpServletRequest request,
-                             @RequestParam("groupId") Long groupId, Model model) {
+    public String createForm(HttpServletRequest request, Model model) {
         
         HttpSession session = request.getSession();
-        session.setAttribute("groupId", groupId);
+        Long groupId = Long.valueOf(String.valueOf(session.getAttribute("groupId")));
         
         Group findGroup = groupService.findOne(groupId);
         Member findMember = memberService.findOne(Long.valueOf(String.valueOf(session.getAttribute("memberId"))));
@@ -90,14 +89,16 @@ public class TimeCapsuleController {
      * @return TimecapsuleList
      */
     @GetMapping("/timeCapsule/group/{group_id}")
-    public String groupTimeCapsule(@PathVariable("group_id") Long groupId, Model model) {
+    public String groupTimeCapsule(@PathVariable("group_id") Long groupId, HttpServletRequest request, Model model) {
         
-        Group group = groupService.findOne(groupId);
-        
+//        Group group = groupService.findOne(groupId);
+        HttpSession session = request.getSession();
+        session.setAttribute("groupId", groupId);
+    
         List<TimeCapsule> timeCapsules = timeCapsuleService.findTimeCapsuleByGroup(groupId);
         model.addAttribute("timeCapsules", timeCapsules);
         
-        return "TimecapsuleList";
+        return "timecapsuleList";
     }
     
     /**

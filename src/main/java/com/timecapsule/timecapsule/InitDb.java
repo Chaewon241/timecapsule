@@ -3,6 +3,7 @@ package com.timecapsule.timecapsule;
 import com.timecapsule.timecapsule.domain.Group;
 import com.timecapsule.timecapsule.domain.GroupMember;
 import com.timecapsule.timecapsule.domain.Member;
+import com.timecapsule.timecapsule.domain.TimeCapsule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +51,13 @@ public class InitDb {
             LocalDateTime time2 = LocalDateTime.now();
             Group group2 = Group.createGroup("테스트그룹2", time2, groupMember2, "1234");
             em.persist(group2);
+    
+            TimeCapsule timeCapsule1 = TimeCapsule.createTimeCapsule(group1, member1, "make time Capsule test", "make time Capsule test");
+            em.persist(timeCapsule1);
+    
+            TimeCapsule timeCapsule2 = TimeCapsule.createTimeCapsule(group1, member1, "make time Capsule test 2", "make time Capsule test 2");
+            em.persist(timeCapsule2);
+            
         }
     }
 }
