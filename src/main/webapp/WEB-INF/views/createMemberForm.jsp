@@ -1,3 +1,4 @@
+<%@ page import="java.util.Random" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -13,6 +14,59 @@
     <h2>회원가입</h2>
 </header>
 <script>
+    <%!
+        Random random = new Random();
+        String authKey = String.valueOf(random.nextInt(8888)+1111);
+    %>
+
+    var authKey;
+
+    async function post(path, body, headers = {}){
+        const url = path;
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                ...headers,
+            },
+            body: JSON.stringify(body),
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if(res.ok){
+            return data;
+        } else {
+            throw Error(data);
+        }
+    }
+
+    function runAuth(){
+        const temp = document.getElementById("phoneNumber").value;
+        const tempKey = authKey;
+
+        post("/member/phone", {
+            phoneNumber: temp,
+            authKey: tempKey,
+        })
+            .then((data) => {
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    function makeAuth(){
+        authKey = <%=authKey%>
+       runAuth();
+    }
+
+    function check(){
+        const key = document.getElementById("key").value;
+        if(key == authKey){
+            alert("인증되었습니다.");
+        }
+    }
+
     <!-- 비밀번호랑 비밀번호 확인 같은지 -->
     function check_pw(){
         var p = document.getElementById('password').value;
@@ -30,6 +84,7 @@
             document.getElementById('msg').innerHTML = "";
         }
     }
+
 </script>
 <form action="/member/new" id="create" method="post">
     <div class="input-box">
@@ -45,11 +100,14 @@
     <div class="input-box">
         <input id="phoneNumber" type="text" name="phoneNumber" placeholder="핸드폰번호">
         <label for="phoneNumber">핸드폰번호</label>
+        <button type="button" onclick="makeAuth()">인증번호 받기</button>
     </div>
 
-    <a href="">
-        <input type="submit" value="검증">
-    </a>
+    <div class="input-box">
+        <input id="key" type="text" name="key" placeholder="인증번호">
+        <label for="key">인증번호</label>
+        <button type="button" onclick="check()">인증</button>
+    </div>
 
     <div class="input-box">
         <input id="password" type="password" name="password" placeholder="비밀번호">
