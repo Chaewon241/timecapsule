@@ -9,16 +9,7 @@
     </head>
 
     <body>
-        <script>
-            window.onload = function() {
-                var login_state = sessionStorage.getItem('state');
 
-                if(login_state != '1'){
-                    alert("로그인 상태가 아닙니다.");
-                    location.href = "Main.jsp";
-                }
-            }
-        </script>
         <header>
             <h2>그룹 생성</h2>
         </header>
@@ -27,8 +18,22 @@
             <label for="groupName">그룹명 입력</label>
             열람날짜<input type = "datetime-local" min = "2022-05-30" max = "2025-05-30" id = "openDate" name="openDate" step = "1">
 
-            <input type="password" id="password" name="password">
-            <input type="submit" value="그룹생성">
+            <input type="password" name="password">
+            <input type="submit" id="create" value="그룹생성">
         </form>
+
+        <script>
+            var nickname = sessionStorage.getItem('nick');
+            window.onload = function() {
+
+                var login_state = sessionStorage.getItem('state');
+
+                if(login_state != '1'){
+                    alert("로그인 상태가 아닙니다.");
+                    location.href = "Main";
+                }
+            }
+
+        </script>
     </body>
 </html>
