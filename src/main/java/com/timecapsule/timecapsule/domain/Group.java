@@ -73,4 +73,18 @@ public class Group {
             groupMember.remove();
         }
     }
+
+    /**
+     * Group 리더 찾기
+     * 그룹의 리더 이름을 가져와서 반환합니다.
+     * @return : 리더 이름(String)
+     */
+    public String getLeader(){
+        for (GroupMember groupMember : groupMembers) {
+            if(groupMember.getIsGroupLeader() == Boolean.TRUE){
+                return groupMember.getMember().getNickname();
+            }
+        }
+        throw new IllegalStateException("그룹 리더가 없습니다.");
+    }
 }

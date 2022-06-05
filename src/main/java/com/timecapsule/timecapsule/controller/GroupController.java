@@ -75,7 +75,7 @@ public class GroupController {
         model.addAttribute("groupname", group.getGroupName());
         model.addAttribute("opendate",group.getOpenDate());
         model.addAttribute("leadernickname", leader.getNickname());
-        return "info";
+        return "groupInfo";
     }
 
     /**
