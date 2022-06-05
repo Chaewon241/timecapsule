@@ -89,7 +89,7 @@
                 var login_state = sessionStorage.getItem('state');
 
                 if(login_state != '1'){
-                    location.href = "Main.jsp";
+                    location.href = "Main";
                 }
             }
 
