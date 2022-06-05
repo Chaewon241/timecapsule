@@ -38,10 +38,16 @@ public class InitDb {
                     "01033334444", "테스트닉네임2");
             em.persist(member2);
 
-            GroupMember groupMember1 = new GroupMember(member1);
+            Member member3 = new Member("ggeggrgg@naver.com", "1234",
+                    "01055556666", "깨아르");
+            em.persist(member3);
+
+            GroupMember groupMember1 = new GroupMember();
+            groupMember1.setMember(member1);
             em.persist(groupMember1);
 
-            GroupMember groupMember2 = new GroupMember(member2);
+            GroupMember groupMember2 = new GroupMember();
+            groupMember2.setMember(member2);
             em.persist(groupMember2);
 
             LocalDateTime time1 = LocalDateTime.now();
