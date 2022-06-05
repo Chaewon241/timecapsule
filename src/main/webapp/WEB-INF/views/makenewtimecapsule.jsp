@@ -39,12 +39,11 @@
 
 
         타입캡슐개봉날짜<br>
-        <form action ="/timecapsule/new" method = "post">
         <input type = "date" min = "2022-05-30" max = "2030-05-30" name = "saveDate" step = "1">
 
         <br><br>
     
-    </form>
+  
         <input type="button" name = "savetimecapsule" value  = "저장">
         </form>
 
