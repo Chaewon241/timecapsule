@@ -45,7 +45,10 @@
             window.onload = function() {
                 const nick = '${nickname}';
                 console.log(nick);
-                sessionStorage.setItem("nick", nick);
+
+                if(nick != ''){
+                    sessionStorage.setItem("nick", nick);
+                }
 
                 var data = sessionStorage.getItem('nick');
                 document.getElementById('nickname').innerHTML = data + "님 환영합니다.";
