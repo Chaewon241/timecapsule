@@ -13,7 +13,6 @@
         <header>
             <h1>내 그룹</h1>
         </header>
-
         <c:forEach items="${groups}" var="group">
             <form action="/group/${group.id}/join" method="get"> <!-- 타임캡슐 조회 페이지로 매핑 다시하기 -->
                 그룹 아이디: <p>${group.id}</p>
