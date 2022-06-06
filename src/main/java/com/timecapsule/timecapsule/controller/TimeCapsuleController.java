@@ -9,6 +9,7 @@ import com.timecapsule.timecapsule.service.MemberService;
 import com.timecapsule.timecapsule.service.MultimediaService;
 import com.timecapsule.timecapsule.service.TimeCapsuleService;
 import java.net.MalformedURLException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -100,7 +101,10 @@ public class TimeCapsuleController {
         session.setAttribute("groupId", groupId);
         
         List<TimeCapsule> timeCapsules = timeCapsuleService.findTimeCapsuleByGroup(groupId);
+        LocalDateTime openDate = groupService.findOne(groupId).getOpenDate();
+        String findDate = openDate.toString();
         model.addAttribute("timeCapsules", timeCapsules);
+        model.addAttribute("findDate", findDate);
         
         return "timecapsuleList";
     }
