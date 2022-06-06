@@ -46,5 +46,6 @@ public class MemberRepository {
 
     public void removeMember(Member member){
         em.remove(member);
+        em.flush();
     }
 }

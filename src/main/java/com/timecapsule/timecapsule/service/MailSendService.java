@@ -2,6 +2,7 @@ package com.timecapsule.timecapsule.service;
 
 import com.timecapsule.timecapsule.MailUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class MailSendService {
 
     private final JavaMailSender mailSender;
     private int size;
+
+    @Value("${Email.fromEmail}")
+    private String fromEmail;
 
     /**
      * 인증키 생성
@@ -59,7 +63,7 @@ public class MailSendService {
                     .append(authKey)
                     .append("' target='_blank'>이메일 인증 확인</a>")
                     .toString());
-            sendMail.setFrom("[인증 메일 전송하는 이메일 주소]", "[관리자, 이메일에 표시되는 이름]");
+            sendMail.setFrom(fromEmail, "웹타임캡슐");
             sendMail.setTo(email);
             sendMail.send();
         } catch (MessagingException e){
@@ -81,7 +85,7 @@ public class MailSendService {
                     .append("<a href='http://localhost:8080")
                     .append("' target='_blank'>TimeCapsule</a>")
                     .toString());
-            sendMail.setFrom("[인증 메일 전송하는 이메일 주소]", "[관리자, 이메일에 표시되는 이름]");
+            sendMail.setFrom(fromEmail, "웹타임캡슐");
             sendMail.setTo(email);
             sendMail.send();
         } catch(MessagingException e){

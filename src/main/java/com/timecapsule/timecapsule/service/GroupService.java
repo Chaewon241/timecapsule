@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,7 @@ public class GroupService {
 
     private final GroupRepository groupRepository;
     private final MemberRepository memberRepository;
+    private final EntityManager em;
 
     /**
      * 그룹 생성
@@ -33,7 +35,8 @@ public class GroupService {
     @Transactional
     public void createGroup(Long memberId, String groupName, LocalDateTime openDate, String password) {
         Member leader = memberRepository.findOne(memberId);
-        GroupMember groupMember = new GroupMember(leader);
+        GroupMember groupMember = new GroupMember();
+        groupMember.setMember(leader);
         Group group = Group.createGroup(groupName, openDate, groupMember, password);
         groupRepository.save(group);
     }
@@ -95,12 +98,22 @@ public class GroupService {
 
         if (group.getPassword().equals(password)) {
             //가입 승인
-            GroupMember groupMember = new GroupMember(member);
+            GroupMember groupMember = new GroupMember();
+            groupMember.setMember(member);
             group.addGroupMember(groupMember);
+            groupRepository.save(group);
+            em.flush();
         } else {
             //가입 실패
             throw new IllegalStateException("그룹 가입 실패");
         }
+    }
 
+    /**
+     * 멤버 그룹 찾기
+     * 해당 멤버가 속한 그룹을 찾습니다.
+     */
+    public List<Group> findGroupByMember(GroupSearch groupSearch) {
+        return groupRepository.findAllByName(groupSearch);
     }
 }

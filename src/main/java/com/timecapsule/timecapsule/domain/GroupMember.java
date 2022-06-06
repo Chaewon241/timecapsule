@@ -18,7 +18,7 @@ public class GroupMember {
 
     private Boolean isGroupLeader = false;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name="member_id")
     private Member member;
 
@@ -26,9 +26,7 @@ public class GroupMember {
     @JoinColumn(name="group_id")
     private Group group;
 
-    protected GroupMember(){}
-
-    public GroupMember(Member member) {
+    public void setMember(Member member) {
         this.member = member;
     }
 

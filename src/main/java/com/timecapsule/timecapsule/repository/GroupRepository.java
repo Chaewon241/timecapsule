@@ -69,4 +69,22 @@ public class GroupRepository {
         TypedQuery<Group> query = em.createQuery(cg).setMaxResults(100);
         return query.getResultList();
     }
+
+    public List<Group> findAllByName(GroupSearch groupSearch){
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Group> cg = cb.createQuery(Group.class);
+        Root<Group> g = cg.from(Group.class);
+        Join<Object, Object> m = g.join("groupMembers", JoinType.INNER);
+        Join<Object, Object> mm = m.join("member", JoinType.INNER);
+
+        List<Predicate> criteria = new ArrayList<>();
+
+        //멤버 이름으로 검색
+        Predicate memberName = cb.equal(mm.get("nickname"), groupSearch.getMemberName());
+        criteria.add(memberName);
+
+        cg.where(cb.and(criteria.toArray( new Predicate[criteria.size()])));
+        TypedQuery<Group> query = em.createQuery(cg).setMaxResults(100);
+        return query.getResultList();
+    }
 }

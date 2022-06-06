@@ -6,6 +6,7 @@ import com.timecapsule.timecapsule.domain.GroupMember;
 import com.timecapsule.timecapsule.domain.Member;
 import com.timecapsule.timecapsule.repository.GroupSearch;
 import com.timecapsule.timecapsule.service.GroupService;
+import com.timecapsule.timecapsule.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import java.util.List;
 public class GroupController {
 
     private final GroupService groupService;
+    private final MemberService memberService;
 
     /**
      * 그룹을 생성할 페이지로 넘어가게 만들어줄 매핑입니다.
@@ -62,18 +64,10 @@ public class GroupController {
     @GetMapping("/group/{id}")
     public String findOne(@PathVariable("id") Long groupId, Model model) {
         Group group = groupService.findOne(groupId);
-
-        List<GroupMember> gms = group.getGroupMembers();
-        Member leader = null;
-        for (GroupMember gm : gms) {
-            if (gm.getIsGroupLeader()) {
-                leader = gm.getMember();
-            }
-        }
         String openDate = group.getOpenDate().toString();
         model.addAttribute("groupname", group.getGroupName());
         model.addAttribute("opendate", openDate);
-        model.addAttribute("leadernickname", leader.getNickname());
+        model.addAttribute("leadernickname", group.getLeader());
         return "groupInfo";
     }
 
@@ -158,5 +152,18 @@ public class GroupController {
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         groupService.joinGroup(groupId, memberId, password);
         return "Main2";
+    }
+
+    @GetMapping("/mygroup")
+    public String myGroupList(HttpServletRequest request,
+                              Model model) {
+        HttpSession session = request.getSession();
+        Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
+        Member member = memberService.findOne(memberId);
+        GroupSearch groupSearch = new GroupSearch();
+        groupSearch.setMemberName(member.getNickname());
+        List<Group> groups = groupService.findGroupByMember(groupSearch);
+        model.addAttribute("groups", groups);
+        return "myGroup";
     }
 }

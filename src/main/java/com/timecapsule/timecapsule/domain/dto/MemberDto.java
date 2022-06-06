@@ -12,10 +12,10 @@ public class MemberDto {
     private String phoneNumber;
     private String password;
 
-    public MemberDto(String email, String nickName, String phoneNumber, String password){
+    public MemberDto(String email, String password, String phoneNumber, String nickName){
         this.email = email;
-        this.nickName = nickName;
-        this.phoneNumber = phoneNumber;
         this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.nickName = nickName;
     }
 }

@@ -90,13 +90,10 @@ public class MemberService {
     }
 
     //회원 탈퇴
+    @Transactional
     public void removeMember(Long memberId){
         Member member = memberRepository.findOne(memberId);
-        if(!member.equals(null)){
-            memberRepository.removeMember(member);
-            return;
-        }
-        throw new IllegalStateException("해당 회원이 없음");
+        memberRepository.removeMember(member);
     }
 
 }
