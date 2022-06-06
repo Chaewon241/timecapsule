@@ -38,14 +38,12 @@ public class Group {
         this.password = password;
     }
 
-    public boolean updateOpenDate(LocalDateTime newOpenDate){
-        if(!isChangedOpenDate){
-            this.openDate = newOpenDate;
-            return true;
-        }
-        else{
-            return false;
-        }
+    public void updateOpenDate(LocalDateTime newOpenDate){
+        this.openDate = newOpenDate;
+    }
+
+    public void updateIsOpen(){
+        this.isChangedOpenDate = true;
     }
 
     //==연관관계 메서드==//
