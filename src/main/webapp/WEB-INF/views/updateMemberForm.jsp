@@ -139,17 +139,47 @@
             }
 
             <!-- 비밀번호랑 비밀번호 확인 같은지 -->
-            function check_pw(){
-                var p = document.getElementById('password').value;
-                var p_cf = document.getElementById('ckpassword').value;
+            function formcheck(){
+                var email = document.getElementById('email');
+                var nickname = document.getElementById('nickname');
+                var phoneNumber = document.getElementById('phoneNumber');
+                var p = document.getElementById('password');
+                var p_cf = document.getElementById('ckpassword');
 
-                if (p!=p_cf) {
+                if(email.value == ""){
+                    alert("이메일을 입력하세요.");
+                    email.focus();
+                    return false;
+                }
+                if(nickname.value == ""){
+                    alert("닉네임을 입력하세요.");
+                    nickname.focus();
+                    return false;
+                }
+                if(phoneNumber.value == ""){
+                    alert("핸드폰 번호를 입력하세요.");
+                    phoneNumber.focus();
+                    return false;
+                }
+                if(p.value == ""){
+                    alert("비밀번호를 입력하세요.");
+                    p.focus();
+                    return false;
+                }
+                if(p_cf.value == ""){
+                    alert("비밀번호확인을 입력하세요.");
+                    p_cf.focus();
+                    return false;
+                }
+
+                if (p.value !=p_cf.value) {
                     document.getElementById('msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+                    return false;
                 }
                 else {
                     document.getElementById('msg').innerHTML = "비밀번호 확인";
                 }
-                if (p_cf=="") {
+                if (p_cf.value == "") {
                     document.getElementById('msg').innerHTML = "비밀번호 확인";
                 }
             }
@@ -190,7 +220,7 @@
                 <input id="ckpassword" type="password" name="ckpassword" placeholder="비밀번호 확인" onkeyup="check_pw()">
                 <label for="ckpassword" id="msg">비밀번호 확인</label>
             </div>
-            <input type="submit" value="수정">
+            <input type="submit" onclick="return formcheck()" value="수정">
         </form>
     </body>
 </html>

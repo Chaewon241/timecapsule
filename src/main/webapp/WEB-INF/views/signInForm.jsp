@@ -110,9 +110,30 @@
     const id = document.getElementById('email')
     const password = document.getElementById('password')
     const login = document.getElementById('login')
-    let errStack = 0;
+    window.onload = function() {
+        var ck = sessionStorage.getItem('state');
+
+        if(ck == '1'){
+            window.location.href('Main2');
+        }
+    }
+
+
 
     function saveSession(){
+        var email = document.getElementById('email');
+        var p = document.getElementById('password');
+
+        if(email.value == ""){
+            alert("이메일을을 입력하세요.");
+           email.focus();
+            return false;
+        }
+        if(p.value == ""){
+            alert("비밀번호를 입력하세요.");
+            p.focus();
+            return false;
+        }
         sessionStorage.setItem("state", '1');
     }
 
@@ -129,7 +150,7 @@
         <label for="password">비밀번호</label>
     </div>
 
-    <input type="submit" id="login" onclick="saveSession()" value="로그인">
+    <input type="submit" id="login" onclick="return saveSession()" value="로그인">
 
 </form>
 </body>
