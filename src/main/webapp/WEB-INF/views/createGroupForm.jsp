@@ -78,24 +78,6 @@
                 justify-content: center;
             }
 
-            #verify{
-                background-color: #8aa1a1;
-                border:none;
-                color:white;
-                border-radius: 5px;
-                width:40px;
-                height:20px;
-                font-size: 10pt;
-                margin-top:10px;
-            }
-
-            #forgot{
-                text-align: right;
-                font-size:12pt;
-                color:rgb(164, 164, 164);
-                margin:10px 0px;
-            }
-
             a:link { background-image: linear-gradient(rgba(0, 195, 6, 0.2) 100%, transparent 0); background-position: 0 0.85em; background-repeat: repeat-x; background-size: 1px 0.5em; }
 
         </style>
@@ -119,7 +101,7 @@
                 <input id="password" type="password" name="password" placeholder="비밀번호">
                 <label for="password">비밀번호</label>
             </div>
-            <input type="submit" id="create" value="그룹생성">
+            <input type="submit" id="create" onclick="return formcheck()" value="그룹생성">
         </form>
 
         <script>
@@ -131,6 +113,28 @@
                 if(login_state != '1'){
                     alert("로그인 상태가 아닙니다.");
                     location.href = "Main";
+                }
+            }
+
+            function formcheck(){
+                var groupName = document.getElementById('groupName');
+                var openDate = document.getElementById('openDate');
+                var p = document.getElementById('password');
+
+                if(groupName.value == ""){
+                    alert("그룹명을 입력하세요.");
+                    groupName.focus();
+                    return false;
+                }
+                if(openDate.value == ""){
+                    alert("열람날짜를 입력하세요.");
+                    openDate.focus();
+                    return false;
+                }
+                if(p.value == ""){
+                    alert("비밀번호를 입력하세요.");
+                    p.focus();
+                    return false;
                 }
             }
         </script>
