@@ -86,7 +86,7 @@ public class MemberController {
      * 회원 탈퇴하는 매핑으로 세션에 답긴 값을 다 지우고, 세션을 초기화합니다.
      * @return : 로그인 전 메인페이지로 이동
      */
-    @PostMapping("/member/delete")
+    @GetMapping("/member/delete")
     public String deleteMember(HttpServletRequest request){
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
