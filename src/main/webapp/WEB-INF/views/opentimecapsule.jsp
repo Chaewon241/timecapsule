@@ -9,7 +9,7 @@
         <title>타임캡슐개봉</title>
     </head>
     <body>
-        ${msg}
+        ${msg}<br>
         제목: ${timeCapsule.title}<br>
         그룹명: ${timeCapsule.group.groupName}<br>
         그룹리더: ${timeCapsule.group.getLeader()}<br><br>
