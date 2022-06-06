@@ -128,11 +128,13 @@ public class MemberController {
                                @RequestParam("email") String email,
                                @RequestParam("password") String password,
                                @RequestParam("phoneNumber") String phoneNumber,
-                               @RequestParam("nickname") String nickname ){
+                               @RequestParam("nickname") String nickname,
+                               Model model){
         HttpSession session = request.getSession();
         Long memberId = Long.valueOf(String.valueOf(session.getAttribute("memberId")));
         MemberDto memberDto = new MemberDto(email, password, phoneNumber, nickname);
         memberService.updateMemberInfo(memberId, memberDto);
+        model.addAttribute("nickname", nickname);
         return "Main2";
     }
 }
