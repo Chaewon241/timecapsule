@@ -85,7 +85,7 @@ public class TimeCapsuleController {
         
         model.addAttribute("nickname", findMember.getNickname());
         
-        return "redirect:/Main2";
+        return "Main2";
     }
     
     /**
