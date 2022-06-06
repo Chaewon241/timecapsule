@@ -68,4 +68,15 @@ public class SignController {
         session.invalidate();
         return "Main";
     }
+
+    @GetMapping("/main2")
+    public String toSignMain(){
+        return "Main2";
+    }
+
+    @GetMapping("/main")
+    public String toUnsignMain(){
+
+        return "Main";
+    }
 }

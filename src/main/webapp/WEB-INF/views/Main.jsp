@@ -32,32 +32,39 @@
                 color: black;
             }
 
-            section {
-                padding: 20px;
-                color: black;
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .intro{
                 display: flex;
-                flex-direction: row-reverse;
-            }
-
-            section > div {
-
+                justify-content: center;
+                align-items: center;
+                max-width: 1200px;
                 margin: auto;
-                width: 200px;
-                height: 500px;
-                padding: 10px;
             }
 
-            ul{
-                margin: 0;
-                padding: 0;
-                list-style-type: none;
-                float: right;
+            .intro .card {
+                flex: 1;
+                text-align: center;
+                margin: 150px 40px;
             }
 
-            li{
-                display: inline;
-                margin: 0 20px 0 0 ;
+            .intro .card i{
+                font-size: 70px;
+                color: #444;
+                margin-bottom: 30px;
             }
+
+            .intro .card h1{
+                letter-spacing: 0.2ch;
+            }
+            .intro .card p {
+                font-size: 20px;
+            }
+
         </style>
     </head>
 
@@ -72,10 +79,24 @@
         </div>
     </div>
 
-    <section id="tripple">
-        <div>a</div>
-        <div>b</div>
-        <div>c</div>
+    <section class="intro">
+        <div class="card">
+            <i class="one"></i>
+            <h1>타임캡슐의 기능 1</h1>
+            <p>그룹을 만들어 소중한 추억을 공유할 수 있다.</p>
+        </div>
+
+        <div class="card">
+            <i class="two"></i>
+            <h1>타임캡슐의 기능 2</h1>
+            <p>다양한 멀티미디어를 저장할 수 있다.</p>
+        </div>
+
+        <div class="card">
+            <i class="three"></i>
+            <h1>타임캡슐의 기능 3</h1>
+            <p>알림 서비스를 통해 열람날짜를 놓치지 않는다.</p>
+        </div>
     </section>
     </body>
 </html>
