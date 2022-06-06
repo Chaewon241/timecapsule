@@ -81,6 +81,9 @@
                 <p>그룹리더 : ${group.getLeader()}</p>
                 <p>타임캡슐 열람날짜 : ${group.openDate}</p>
                 <button type="submit">타임캡슐 조회</button>
+                    <a href="/group/${group.id}">
+                        <button type="button">열람날짜 수정</button>
+                    </a>
             </form>
         </c:forEach>
         </form>
