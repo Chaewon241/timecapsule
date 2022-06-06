@@ -70,10 +70,14 @@ public class GroupService {
      * isChangedOpenDate 의 default 값은 false 이고, 한번 수정이 진행되었다면 true 로 설정된다.
      * 만약 true 이면 수정이 불가능하다. (날짜 수정은 한번만 된다는 흐름)
      */
+    @Transactional
     public void updateOpenDate(Long groupId, LocalDateTime newOpenDate) {
         Group group = groupRepository.findOne(groupId);
-        if (!group.updateOpenDate(newOpenDate)) {
+        if (group.getIsChangedOpenDate()) {
             throw new IllegalStateException("열람날짜 수정은 한번만 가능합니다.");
+        } else {
+            group.updateOpenDate(newOpenDate);
+            group.updateIsOpen();
         }
     }
 

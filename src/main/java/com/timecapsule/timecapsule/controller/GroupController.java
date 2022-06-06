@@ -65,9 +65,7 @@ public class GroupController {
     public String findOne(@PathVariable("id") Long groupId, Model model) {
         Group group = groupService.findOne(groupId);
         String openDate = group.getOpenDate().toString();
-        model.addAttribute("groupname", group.getGroupName());
-        model.addAttribute("opendate", openDate);
-        model.addAttribute("leadernickname", group.getLeader());
+        model.addAttribute("group", group);
         return "groupInfo";
     }
 
@@ -83,7 +81,7 @@ public class GroupController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime temp = LocalDateTime.parse(openDate, formatter);
         groupService.updateOpenDate(groupId, temp);
-        return "groupList";
+        return "Main2";
     }
 
     /**
