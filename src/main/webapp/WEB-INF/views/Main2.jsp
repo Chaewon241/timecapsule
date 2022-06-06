@@ -69,7 +69,7 @@
                 <input type="button" id="logout" value="로그아웃">
             </a>
 
-            <a href="/member/{id}/delete" id="cancel" method="post">
+            <a href="/member/delete" id="cancel">
                 <input type="button" value="회원 탈퇴">
             </a>
         </form>
@@ -92,14 +92,12 @@
 
             btn.addEventListener('click', function (){
                 sessionStorage.removeItem("nick");
-                sessionStorage.setItem("state", '0');
             })
 
             const cbtn = document.getElementById('cancel');
 
             cbtn.addEventListener('click', function (){
                 sessionStorage.removeItem("nick");
-                sessionStorage.setItem("state", '0');
             })
 
         </script>
