@@ -107,7 +107,7 @@
             <h1>내 그룹</h1>
         </header>
         <c:forEach items="${groups}" var="group">
-            <form action="/mygroup" method="get"> <!-- 타임캡슐 조회 페이지로 매핑 다시하기 -->
+            <form action="/timeCapsule/group/${group.id}" method="get"> <!-- 타임캡슐 조회 페이지로 매핑 다시하기 -->
                 <p>그룹ID : ${group.id}, 그룹이름 : ${group.groupName}</p>
                 <p>그룹리더 : ${group.getLeader()}</p>
                 <p>타임캡슐 열람날짜 : ${group.openDate}</p>

@@ -107,18 +107,9 @@
 </header>
 
 <script>
-    const id = document.getElementById('email')
-    const password = document.getElementById('password')
-    const login = document.getElementById('login')
-    window.onload = function() {
-        var ck = sessionStorage.getItem('state');
-
-        if(ck == '1'){
-            window.location.href('Main2');
-        }
-    }
-
-
+    const id = document.getElementById('email');
+    const password = document.getElementById('password');
+    const login = document.getElementById('login');
 
     function saveSession(){
         var email = document.getElementById('email');
@@ -134,7 +125,7 @@
             p.focus();
             return false;
         }
-        sessionStorage.setItem("state", '1');
+
     }
 
 </script>

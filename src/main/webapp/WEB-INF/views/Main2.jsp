@@ -61,7 +61,7 @@
                 <input type="button" value="내 정보">
             </a>
 
-            <a href="/group/${group.id}"> <!-- 그룹조회매핑 다시 확인 -->
+            <a href="/mygroup"> <!-- 그룹조회매핑 다시 확인 -->
                 <input type="button" value="내 그룹">
            </a>
 
@@ -79,18 +79,13 @@
                 const nick = '${nickname}';
                 console.log(nick);
 
-                if(nick != ''){
+                if((nick != '') && (nick != null)){
                     sessionStorage.setItem("nick", nick);
                 }
 
                 var data = sessionStorage.getItem('nick');
                 document.getElementById('nickname').innerHTML = data + "님 환영합니다.";
 
-                var login_state = sessionStorage.getItem('state');
-
-                if(login_state != '1'){
-                    location.href = "Main";
-                }
             }
 
             const btn = document.getElementById('logout');

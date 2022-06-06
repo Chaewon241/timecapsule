@@ -105,17 +105,6 @@
         </form>
 
         <script>
-            var nickname = sessionStorage.getItem('nick');
-            window.onload = function() {
-
-                var login_state = sessionStorage.getItem('state');
-
-                if(login_state != '1'){
-                    alert("로그인 상태가 아닙니다.");
-                    location.href = "Main";
-                }
-            }
-
             function formcheck(){
                 var groupName = document.getElementById('groupName');
                 var openDate = document.getElementById('openDate');
