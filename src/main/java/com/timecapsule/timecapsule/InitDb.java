@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 @RequiredArgsConstructor
@@ -50,11 +51,15 @@ public class InitDb {
             groupMember2.setMember(member2);
             em.persist(groupMember2);
 
-            LocalDateTime time1 = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+            String tempString1 = "2022-06-10T10:20:30";
+            LocalDateTime time1 = LocalDateTime.parse(tempString1, formatter);
             Group group1 = Group.createGroup("테스트그룹", time1, groupMember1, "1234");
             em.persist(group1);
 
-            LocalDateTime time2 = LocalDateTime.now();
+            String tempString2 = "2022-06-11T10:20:30";
+            LocalDateTime time2 = LocalDateTime.parse(tempString2, formatter);
             Group group2 = Group.createGroup("테스트그룹2", time2, groupMember2, "1234");
             em.persist(group2);
     
