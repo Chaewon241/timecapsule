@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../resources/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h3>타임캡슐 목록</h3>
+<header>타임캡슐 목록</header>
 <style type="text/css">
     .tg {
         border-collapse: collapse;
@@ -51,6 +51,11 @@
         text-align: center;
         vertical-align: top
     }
+    header{display: flex;
+        justify-content: center;
+
+    }
+
 </style>
 
 <table class="tg">
@@ -71,4 +76,3 @@
 <input type="button" value="새로운 타임캡슐 생성" onclick="location.href='/timeCapsule/new'"> <br>
 </body>
 </html>
-
