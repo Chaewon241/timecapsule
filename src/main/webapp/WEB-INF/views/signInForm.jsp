@@ -78,24 +78,6 @@
             justify-content: center;
         }
 
-        #verify{
-            background-color: #8aa1a1;
-            border:none;
-            color:white;
-            border-radius: 5px;
-            width:40px;
-            height:20px;
-            font-size: 10pt;
-            margin-top:10px;
-        }
-
-        #forgot{
-            text-align: right;
-            font-size:12pt;
-            color:rgb(164, 164, 164);
-            margin:10px 0px;
-        }
-
         a:link { background-image: linear-gradient(rgba(0, 195, 6, 0.2) 100%, transparent 0); background-position: 0 0.85em; background-repeat: repeat-x; background-size: 1px 0.5em; }
 
     </style>
