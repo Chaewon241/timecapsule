@@ -59,21 +59,22 @@ public class TimeCapsuleController {
     }
     
     /**
-     * 타임캡슐 생성 폼의 결과를 받아 타임캡슐을 생성한 후 메인 페이지로 redirect 시키는 컨트롤러
+     * 타임캡슐 생성 폼의 결과를 받아 타임캡슐을 생성한 후 메인 페이지로 이동시키는 컨트롤러
      */
     @PostMapping("/timeCapsule/new")
     public String create(HttpServletRequest request, @RequestParam("title") String title,
                          @RequestParam("text") String text,
-                         @RequestParam("multipartFiles") List<MultipartFile> multipartFiles)
+                         @RequestParam("multipartFiles") List<MultipartFile> multipartFiles,
+                         Model model)
         throws IOException {
         
         HttpSession session = request.getSession();
+        Member findMember = memberService.findOne(
+            Long.valueOf(String.valueOf(session.getAttribute("memberId"))));
         
         Long timeCapsuleId = timeCapsuleService.createNewTimeCapsule(
-            Long.valueOf(String.valueOf(session.getAttribute("groupId"))),
-            Long.valueOf(String.valueOf(session.getAttribute("memberId"))),
-            title,
-            text);
+            Long.valueOf(String.valueOf(session.getAttribute("groupId"))), findMember.getId(),
+            title, text);
         
         session.removeAttribute("groupId");
         
@@ -81,7 +82,9 @@ public class TimeCapsuleController {
             multimediaService.createNewMultimedias(timeCapsuleId, multipartFiles);
         }
         
-        return "redirect:/";
+        model.addAttribute("nickname", findMember.getNickname());
+        
+        return "redirect:/Main2";
     }
     
     /**
