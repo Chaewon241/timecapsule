@@ -7,7 +7,7 @@
     <title>회원가입</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
     <style>
-        header{
+        header, footer{
             display:flex;
             justify-content: center;
         }
@@ -94,6 +94,7 @@
     %>
 
     var authKey;
+    var isAuth = false;
 
     async function post(path, body, headers = {}){
         const url = path;
@@ -130,14 +131,19 @@
     }
 
     function makeAuth(){
+        alert("인증 문자를 발송하였습니다.");
         authKey = <%=authKey%>
        runAuth();
     }
 
     function check(){
-        const key = document.getElementById("key").value;
-        if(key == authKey){
+        const key = document.getElementById("key");
+        if(key.value == authKey){
             alert("인증되었습니다.");
+            key.setAttribute("readOnly","true");
+            isAuth = true;
+        } else {
+            isAuth = false;
         }
     }
 
@@ -172,6 +178,10 @@
         if(p_cf.value == ""){
             alert("비밀번호확인을 입력하세요.");
             p_cf.focus();
+            return false;
+        }
+        if(isAuth==false){
+            alert("휴대폰 인증을 진행해주세요");
             return false;
         }
 
@@ -224,5 +234,8 @@
     <button id="join" onclick="return formcheck()" type="submit">회원가입</button>
 
 </form>
+<footer>
+    <a href="/main2">홈으로</a>
+</footer>
 </body>
 </html>

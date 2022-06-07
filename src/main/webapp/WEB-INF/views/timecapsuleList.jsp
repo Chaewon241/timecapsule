@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-    header {
+    header, footer {
         display: flex;
         justify-content: center;
     }
@@ -141,11 +141,14 @@
 <c:forEach items="${timeCapsules}" var="timeCapsule">
     <form action="/timeCapsule/${timeCapsule.id}">
         <p>타임캡슐 타이틀 : ${timeCapsule.title}</p>
-        <button type="submit" onclick="return getTime()">타임캡슐 열람</button>
+        <button type="submit">타임캡슐 열람</button>
     </form>
 </c:forEach>
 <form action="/timeCapsule/new">
     <button type="submit">타임캡슐 작성</button>
 </form>
+<footer>
+    <a href="/main2">홈으로</a>
+</footer>
 </body>
 </html>

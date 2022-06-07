@@ -1,5 +1,6 @@
 package com.timecapsule.timecapsule.repository;
 
+import com.timecapsule.timecapsule.domain.GroupMember;
 import com.timecapsule.timecapsule.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -45,6 +46,10 @@ public class MemberRepository {
     }
 
     public void removeMember(Member member){
+        List<GroupMember> groupMembers = member.getGroupMembers();
+        for (GroupMember groupMember : groupMembers) {
+            em.remove(groupMember);
+        }
         em.remove(member);
         em.flush();
     }

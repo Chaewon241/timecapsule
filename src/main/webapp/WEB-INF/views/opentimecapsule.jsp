@@ -57,5 +57,8 @@
         <text>${timeCapsule.group.openDate}</text>
         <br>
         <br><br>
+        <footer>
+            <a href="/main2">홈으로</a>
+        </footer>
     </body>
 </html>

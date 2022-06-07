@@ -27,8 +27,7 @@
 
 
         }
-       
-        header{
+        header, footer{
             display:flex;
             justify-content: center;
         }
@@ -62,6 +61,9 @@
                                                                                                                        
                                                                                                                        
     <input type="submit" value="저장">                                                                                   
-</form>                                                                                                                
+</form>
+<footer>
+    <a href="/main2">홈으로</a>
+</footer>
 </body>                                                                                                                
 </html>     
