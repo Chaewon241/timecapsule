@@ -94,6 +94,7 @@
     %>
 
     var authKey;
+    var isAuth = false;
 
     async function post(path, body, headers = {}){
         const url = path;
@@ -130,14 +131,19 @@
     }
 
     function makeAuth(){
+        alert("인증 문자를 발송하였습니다.");
         authKey = <%=authKey%>
        runAuth();
     }
 
     function check(){
-        const key = document.getElementById("key").value;
-        if(key == authKey){
+        const key = document.getElementById("key");
+        if(key.value == authKey){
             alert("인증되었습니다.");
+            key.setAttribute("readOnly","true");
+            isAuth = true;
+        } else {
+            isAuth = false;
         }
     }
 
@@ -172,6 +178,10 @@
         if(p_cf.value == ""){
             alert("비밀번호확인을 입력하세요.");
             p_cf.focus();
+            return false;
+        }
+        if(isAuth==false){
+            alert("휴대폰 인증을 진행해주세요");
             return false;
         }
 
