@@ -235,7 +235,7 @@
 
 </form>
 <footer>
-    <a href="/main2">홈으로</a>
+    <a href="/main">홈으로</a>
 </footer>
 </body>
 </html>
