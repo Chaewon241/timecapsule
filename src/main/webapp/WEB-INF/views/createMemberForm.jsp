@@ -7,7 +7,7 @@
     <title>회원가입</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
     <style>
-        header{
+        header, footer{
             display:flex;
             justify-content: center;
         }
@@ -224,5 +224,8 @@
     <button id="join" onclick="return formcheck()" type="submit">회원가입</button>
 
 </form>
+<footer>
+    <a href="/main2">홈으로</a>
+</footer>
 </body>
 </html>

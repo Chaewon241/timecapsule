@@ -3,9 +3,9 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+        <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height,minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
         <style>
-            header{
+            header, footer{
                 display:flex;
                 justify-content: center;
             }
@@ -86,7 +86,9 @@
             <a href="/member/edit">
                 <input type="button" value="정보 수정">
             </a>
-
         </form>
+        <footer>
+            <a href="/main2">홈으로</a>
+        </footer>
     </body>
 </html>

@@ -18,7 +18,7 @@ public class Member {
     private String nickname;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<GroupMember> groupMembers;
 
     protected Member(){}

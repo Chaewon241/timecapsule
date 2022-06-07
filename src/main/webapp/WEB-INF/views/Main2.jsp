@@ -68,10 +68,6 @@
             <a href="/signOut">
                 <input type="button" id="logout" value="로그아웃">
             </a>
-
-            <a href="/member/delete" id="cancel">
-                <input type="button" value="회원 탈퇴">
-            </a>
         </form>
 
         <script>

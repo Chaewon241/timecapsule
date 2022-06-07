@@ -6,7 +6,7 @@
         <title>그룹 생성</title>
         <meta charset="utf-8" name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
         <style>
-            header{
+            header, footer{
                 display:flex;
                 justify-content: center;
             }
@@ -103,7 +103,9 @@
             </div>
             <input type="submit" id="create" onclick="return formcheck()" value="그룹생성">
         </form>
-
+        <footer>
+            <a href="/main2">홈으로</a>
+        </footer>
         <script>
             function formcheck(){
                 var groupName = document.getElementById('groupName');
