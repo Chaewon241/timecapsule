@@ -54,4 +54,8 @@
         <br><br>
         타임캡슐 열람 가능일:
         <text>${timeCapsule.group.openDate}</text>
+        <br><br><br>
+        <footer>
+            <a href="/main2">홈으로</a>
+        </footer>
         <br>
